@@ -1,0 +1,51 @@
+root = true
+
+[*.cs]
+dotnet_style_qualification_for_property = true
+dotnet_style_qualification_for_method=true:silent
+dotnet_style_qualification_for_field=true:silent
+dotnet_style_qualification_for_event=true:silent
+dotnet_style_object_initializer=false:suggestion
+dotnet_diagnostic.CA1822.severity=silent
+dotnet_diagnostic.CA1834.severity = none
+dotnet_diagnostic.CA1401.severity = none
+dotnet_diagnostic.IDE0090.severity = none
+dotnet_style_collection_initializer = false
+dotnet_diagnostic.IDE0002.severity = none
+dotnet_diagnostic.IDE0060.severity = none
+dotnet_diagnostic.IDE0051.severity = none
+dotnet_diagnostic.IDE0052.severity = none
+dotnet_diagnostic.IDE0047.severity = none
+dotnet_diagnostic.IDE0031.severity = none
+dotnet_style_prefer_compound_assignment=false
+dotnet_style_predefined_type_for_locals_parameters_members=true:suggestion
+dotnet_style_predefined_type_for_member_access=true:suggestion
+dotnet_style_require_accessibility_modifiers=for_non_interface_members:silent
+csharp_style_prefer_pattern_matching=false:silent
+csharp_style_pattern_matching_over_is_with_cast_check=false:suggestion
+csharp_style_pattern_matching_over_as_with_null_check=false:suggestion
+csharp_style_prefer_not_pattern=false:suggestion
+csharp_style_prefer_switch_expression=false:suggestion
+csharp_style_unused_value_assignment_preference=discard_variable:silent
+csharp_style_expression_bodied_properties=false:silent
+csharp_style_expression_bodied_indexers=false:silent
+csharp_style_expression_bodied_accessors=false:silent
+csharp_style_throw_expression = false
+csharp_style_inlined_variable_declaration=false:suggestion
+csharp_style_prefer_range_operator=false:suggestion
+csharp_style_prefer_readonly_struct_member=false:silent
+csharp_prefer_simple_default_expression=false:suggestion
+csharp_style_namespace_declarations=file_scoped:suggestion
+csharp_prefer_braces=true:suggestion
+
+[*.{cs,csproj,pro,c,h,cpp,hpp,cla,md,cmd,txt}]
+end_of_line = lf
+charset = utf-8
+indent_style = space
+indent_size = 4
+
+[{Expect,Actual,Code}]
+end_of_line = lf
+charset = utf-8
+indent_style = space
+indent_size = 4

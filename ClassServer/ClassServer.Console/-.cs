@@ -1,0 +1,11 @@
+global using Any = Avalon.Infra.Any;
+global using State = Avalon.Infra.State;
+global using Thread = Avalon.Thread.Thread;
+global using ThreadCurrent = Avalon.Thread.Current;
+global using ThreadExecuteState = Avalon.Thread.ExecuteState;
+global using TimeInterval = Avalon.Time.Interval;
+global using Network = Avalon.Network.Network;
+global using NetworkCase = Avalon.Network.Case;
+global using NetworkCaseList = Avalon.Network.CaseList;
+global using EntryEntry = Avalon.Entry.Entry;
+global using ClassConsole = Class.Console.Console;

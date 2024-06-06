@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <OutputPath>../../Out</OutputPath>
+        <AssemblyName>ClassServer.Console-ExeCon</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../../../Class/Avalon/Avalon.Entry/Avalon.Entry.csproj" />
+        <ProjectReference Include="../ClassServer.Console/ClassServer.Console.csproj" />
+    </ItemGroup>
+
+</Project>
