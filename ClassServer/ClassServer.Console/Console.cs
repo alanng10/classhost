@@ -5,6 +5,7 @@ class Console : Any
     public override bool Init()
     {
         base.Init();
+        this.InfraInfra = InfraInfra.This;
         this.ListInfra = ListInfra.This;
         this.ClassInfra = ClassInfra.This;
         this.ConsoleConsole = ConsoleConsole.This;
@@ -24,6 +25,7 @@ class Console : Any
     public virtual Network Network { get; set; }
     public virtual TimeInterval Interval { get; set; }
     public virtual int Stage { get; set; }
+    protected virtual InfraInfra InfraInfra { get; set; }
     protected virtual ListInfra ListInfra { get; set; }
     protected virtual ClassInfra ClassInfra { get; set; }
     protected virtual ConsoleConsole ConsoleConsole { get; set; }
@@ -137,6 +139,16 @@ class Console : Any
 
         write.Data = null;
         write.NodeClass = null;
+
+        int k;
+        k = (int)data.Count;
+        
+        k = k - write.Start;
+
+        uint u;
+        u = (uint)k;
+
+        this.InfraInfra.DataMidSet(data, 0, u);
         return data;
     }
 }
