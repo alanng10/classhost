@@ -39,7 +39,14 @@ class NetworkCaseState : State
             if (cc == caseList.Unconnected)
             {
                 threadState.Stage = 1;
+
+                threadState.Interval.Start();
             }
+        }
+
+        if (stage == 1)
+        {
+            
         }
         
         return true;
