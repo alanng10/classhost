@@ -66,7 +66,10 @@ class NetworkReadyState : State
         
         if (b)
         {
-            if (ka < sizeof(int))
+            int kk;
+            kk = sizeof(int);
+
+            if (ka < kk)
             {
                 return true;
             }
@@ -78,6 +81,7 @@ class NetworkReadyState : State
             
             int ke;
             ke = (int)u;
+            
             if (ke < 0)
             {
                 this.ConsoleConsole.Err.Write("Network received data count invalid");
@@ -85,6 +89,12 @@ class NetworkReadyState : State
             }
 
             this.DataCount = ke;
+
+            dataCount = ke;
+
+            ka = ka - kk;
+
+            b = false;
         }
 
         if (!b)
@@ -101,7 +111,7 @@ class NetworkReadyState : State
 
             this.DataRange.Count = dataCount;
 
-            network.Stream.Read(data, this.DataRange);
+            this.Console.Network.Stream.Read(data, this.DataRange);
 
             string text;
             text = this.StringCreate.Data(data, null);
