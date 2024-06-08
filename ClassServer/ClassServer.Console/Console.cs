@@ -1,6 +1,6 @@
 namespace ClassServer.Console;
 
-public class Console : Any
+class Console : Any
 {
     public override bool Init()
     {
@@ -12,6 +12,10 @@ public class Console : Any
 
         this.ClassConsole = new ClassConsole();
         this.ClassConsole.Init();
+
+        this.ClassWrite = new ClassWrite();
+        this.ClassWrite.Init();
+        this.ClassWrite.Start = sizeof(int);
         return true;
     }
 
@@ -26,6 +30,7 @@ public class Console : Any
     protected virtual ClassTaskKindList ClassTaskKindList { get; set; }
     protected virtual ClassConsole ClassConsole { get; set; }
     protected virtual ClassSource ClassSource { get; set; }
+    protected virtual ClassWrite ClassWrite { get; set; }
 
     public virtual bool Execute()
     {
@@ -98,7 +103,7 @@ public class Console : Any
         return true;
     }
 
-    public virtual bool ExecuteClass(string sourceString)
+    public virtual Data ExecuteClass(string sourceString)
     {
         Array text;
         text = this.ClassInfra.TextCreate(sourceString);
@@ -120,7 +125,18 @@ public class Console : Any
         ClassNodeClass varClass;
         varClass = (ClassNodeClass)aa.Get(0);
 
+        ClassWrite write;
+        write = this.ClassWrite;
 
-        return true;
+        write.NodeClass = varClass;
+
+        write.Execute();
+
+        Data data;
+        data = write.Data;
+
+        write.Data = null;
+        write.NodeClass = null;
+        return data;
     }
 }

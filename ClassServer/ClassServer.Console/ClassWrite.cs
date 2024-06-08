@@ -15,7 +15,7 @@ class ClassWrite : Any
         return true;
     }
 
-
+    public virtual ClassNodeClass NodeClass { get; set; }
     public virtual int Start { get; set; }
     public virtual Data Data { get; set; }
     public virtual ClassWriteArg Arg { get; set; }
