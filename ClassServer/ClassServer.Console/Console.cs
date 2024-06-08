@@ -21,6 +21,8 @@ public class Console : Any
     {
         this.ClassConsole.Load();
 
+        
+
         Network network;
         network = new Network();
         network.Init();
@@ -46,9 +48,6 @@ public class Console : Any
         interval.Init();
 
         this.Interval = interval;
-
-
-
 
         interval.SingleShot = true;
         interval.Time = 0;
