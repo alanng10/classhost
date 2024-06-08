@@ -5,6 +5,8 @@ public class Console : Any
     public override bool Init()
     {
         base.Init();
+        this.ListInfra = ListInfra.This;
+        this.ClassInfra = ClassInfra.This;
         this.ConsoleConsole = ConsoleConsole.This;
         this.ClassTaskKindList = ClassTaskKindList.This;
 
@@ -15,13 +17,15 @@ public class Console : Any
 
     public virtual int Status { get; set; }
 
-    public virtual ClassConsole ClassConsole { get; set; }
-    public virtual ClassTask ClassTask { get; set; }
     public virtual Network Network { get; set; }
     public virtual TimeInterval Interval { get; set; }
     public virtual int Stage { get; set; }
+    protected virtual ListInfra ListInfra { get; set; }
+    protected virtual ClassInfra ClassInfra { get; set; }
     protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual ClassTaskKindList ClassTaskKindList { get; set; }
+    protected virtual ClassConsole ClassConsole { get; set; }
+    protected virtual ClassSource ClassSource { get; set; }
 
     public virtual bool Execute()
     {
@@ -31,13 +35,23 @@ public class Console : Any
         task = new ClassTask();
         task.Init();
         task.Kind = this.ClassTaskKindList.Node;
-        task.Source = "Code";
         task.Node = "Class";
-        task.Print = false;
-        task.Out = this.ConsoleConsole.Out;
-        task.Err = this.ConsoleConsole.Err;
 
-        this.ClassTask = task;
+        this.ClassConsole.Task = task;
+
+        ClassSource source;
+        source = new ClassSource();
+        source.Init();
+        source.Index = 0;
+        source.Name = "Code";
+
+        this.ClassSource = source;
+
+        Array array;
+        array = this.ListInfra.ArrayCreate(1);
+        array.Set(0, source);
+        
+        this.ClassConsole.Source = array;
 
         Network network;
         network = new Network();
@@ -81,6 +95,32 @@ public class Console : Any
         thread.ExecuteEventLoop();
 
         network.Final();
+        return true;
+    }
+
+    public virtual bool ExecuteClass(string sourceString)
+    {
+        Array text;
+        text = this.ClassInfra.TextCreate(sourceString);
+
+        this.ClassSource.Text = text;
+
+        this.ClassConsole.ExecuteCreate();
+
+        ClassNodeResult result;
+        result = this.ClassConsole.Result.Node;
+
+        this.ClassConsole.Result = null;
+
+        this.ClassSource.Text = null;
+
+        Array aa;
+        aa = result.Root;
+
+        ClassNodeClass varClass;
+        varClass = (ClassNodeClass)aa.Get(0);
+
+
         return true;
     }
 }
