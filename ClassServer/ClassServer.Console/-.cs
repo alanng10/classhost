@@ -6,7 +6,6 @@ global using StringCreate = Avalon.Infra.StringCreate;
 global using InfraInfra = Avalon.Infra.Infra;
 global using Thread = Avalon.Thread.Thread;
 global using ThreadCurrent = Avalon.Thread.Current;
-global using ThreadExecuteState = Avalon.Thread.ExecuteState;
 global using TimeInterval = Avalon.Time.Interval;
 global using Network = Avalon.Network.Network;
 global using NetworkCase = Avalon.Network.Case;
