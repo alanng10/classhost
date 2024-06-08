@@ -1,4 +1,4 @@
-namespace ClassServer;
+namespace ClassServer.Console;
 
 class NetworkReadyState : State
 {
@@ -6,7 +6,7 @@ class NetworkReadyState : State
     {
         base.Init();
         this.InfraInfra = InfraInfra.This;
-        this.Console = ConsoleConsole.This;
+        this.ConsoleConsole = ConsoleConsole.This;
 
         this.StringCreate = new StringCreate();
         this.StringCreate.Init();
@@ -26,9 +26,9 @@ class NetworkReadyState : State
         return true;
     }
 
-    public virtual NetworkThreadState ThreadState { get; set; }
+    public virtual Console Console { get; set; }
     protected virtual InfraInfra InfraInfra { get; set; }
-    protected virtual ConsoleConsole Console { get; set; }
+    protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual StringCreate StringCreate { get; set; }
     protected virtual DataRange DataRange { get; set; }
 
@@ -38,14 +38,14 @@ class NetworkReadyState : State
 
     public override bool Execute()
     {
-        NetworkThreadState threadState;
-        threadState = this.ThreadState;
+        Console console;
+        console = this.Console;
 
         Network network;
-        network = threadState.Network;
+        network = console.Network;
 
         int stage;
-        stage = threadState.Stage;
+        stage = console.Stage;
         
         NetworkCase cc;
         cc = network.Case;
@@ -80,7 +80,7 @@ class NetworkReadyState : State
             ke = (int)u;
             if (ke < 0)
             {
-                this.Console.Err.Write("Network received data count invalid");
+                this.ConsoleConsole.Err.Write("Network received data count invalid");
                 return true;
             }
 

@@ -1,4 +1,4 @@
-namespace ClassServer;
+namespace ClassServer.Console;
 
 class NetworkCaseState : State
 {
@@ -9,7 +9,7 @@ class NetworkCaseState : State
         return true;
     }
 
-    public virtual NetworkThreadState ThreadState { get; set; }
+    public virtual Console Console { get; set; }
     protected virtual NetworkCaseList NetworkCaseList { get; set; }
 
     public override bool Execute()
@@ -17,14 +17,14 @@ class NetworkCaseState : State
         NetworkCaseList caseList;
         caseList = this.NetworkCaseList;
 
-        NetworkThreadState threadState;
-        threadState = this.ThreadState;
+        Console console;
+        console = this.Console;
 
         Network network;
-        network = threadState.Network;
+        network = console.Network;
 
         int stage;
-        stage = threadState.Stage;
+        stage = console.Stage;
         
         NetworkCase cc;
         cc = network.Case;
@@ -38,9 +38,9 @@ class NetworkCaseState : State
 
             if (cc == caseList.Unconnected)
             {
-                threadState.Stage = 1;
+                console.Stage = 1;
 
-                threadState.Interval.Start();
+                console.Interval.Start();
             }
         }
 

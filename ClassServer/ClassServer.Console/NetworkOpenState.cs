@@ -1,13 +1,13 @@
-namespace ClassServer;
+namespace ClassServer.Console;
 
 class NetworkOpenState : State
 {
-    public virtual NetworkThreadState ThreadState { get; set; }
+    public virtual Console Console { get; set; }
 
     public override bool Execute()
     {
-        NetworkThreadState aa;
-        aa = this.ThreadState;
+        Console aa;
+        aa = this.Console;
 
         int stage;
         stage = aa.Stage;
