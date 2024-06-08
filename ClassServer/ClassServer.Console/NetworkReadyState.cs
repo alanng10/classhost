@@ -47,8 +47,8 @@ class NetworkReadyState : State
         int stage;
         stage = console.Stage;
         
-        NetworkCase cc;
-        cc = network.Case;
+        Stream stream;
+        stream = network.Stream;
 
         if (stage == 0)
         {
@@ -74,7 +74,7 @@ class NetworkReadyState : State
                 return true;
             }
 
-            network.Stream.Read(this.CountData, this.CountRange);
+            stream.Read(this.CountData, this.CountRange);
 
             uint u;
             u = this.InfraInfra.DataMidGet(this.CountData, 0);
@@ -109,14 +109,21 @@ class NetworkReadyState : State
             data.Count = dataCount;
             data.Init();
 
-            this.DataRange.Count = dataCount;
+            DataRange range;
+            range = this.DataRange;
 
-            this.Console.Network.Stream.Read(data, this.DataRange);
+            range.Count = dataCount;
+
+            stream.Read(data, range);
 
             string text;
             text = this.StringCreate.Data(data, null);
 
-            this.Console.ExecuteClass(text);
+            data = this.Console.ExecuteClass(text);
+
+            range.Count = data.Count;
+
+            stream.Write(data, range);
         }
         return true;
     }

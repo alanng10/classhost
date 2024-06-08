@@ -8,6 +8,7 @@ global using Array = Avalon.List.Array;
 global using ListInfra = Avalon.List.Infra;
 global using Thread = Avalon.Thread.Thread;
 global using ThreadCurrent = Avalon.Thread.Current;
+global using Stream = Avalon.Stream.Stream;
 global using TimeInterval = Avalon.Time.Interval;
 global using Network = Avalon.Network.Network;
 global using NetworkCase = Avalon.Network.Case;
