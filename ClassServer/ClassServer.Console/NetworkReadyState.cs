@@ -106,8 +106,6 @@ class NetworkReadyState : State
             string text;
             text = this.StringCreate.Data(data, null);
         }
-        
-
         return true;
     }
 }

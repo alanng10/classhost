@@ -13,3 +13,5 @@ global using NetworkCaseList = Avalon.Network.CaseList;
 global using ConsoleConsole = Avalon.Console.Console;
 global using EntryEntry = Avalon.Entry.Entry;
 global using ClassConsole = Class.Console.Console;
+global using ClassTask = Class.Console.Task;
+global using ClassTaskKindList = Class.Console.TaskKindList;
