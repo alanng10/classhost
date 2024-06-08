@@ -1,0 +1,30 @@
+namespace ClassServer.Console;
+
+class ClassWriteSetOperate : ClassWriteOperate
+{
+    public override bool ExecuteByte(int value)
+    {
+        ClassWrite write;
+        write = this.Write;
+
+        ClassWriteArg arg;
+        arg = write.Arg;
+
+        int index;
+        index = arg.Index;
+
+        Data data;
+        data = arg.Data;
+
+        int start;
+        start = write.Start;
+
+        int k;
+        k = start + index;
+
+        data.Set(k, value);
+
+        arg.Index = index + 1;
+        return true;
+    }
+}
