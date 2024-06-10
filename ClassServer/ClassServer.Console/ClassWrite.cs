@@ -158,11 +158,34 @@ class ClassWrite : Any
             name = field.Name.Value;
         }
         this.ExecuteOptionalString(name);
+
+        int count;
+        count = this.CountData(field.Count);
+        this.ExecuteByte(count);
         return true;
     }
 
     protected virtual bool ExecuteMaide(ClassNodeMaide maide)
     {
+        string varClass;
+        varClass = null;
+        if (!(maide.Class == null))
+        {
+            varClass = maide.Class.Value;
+        }
+        this.ExecuteOptionalString(varClass);
+
+        string name;
+        name = null;
+        if (!(maide.Name == null))
+        {
+            name = maide.Name.Value;
+        }
+        this.ExecuteOptionalString(name);
+
+        int count;
+        count = this.CountData(maide.Count);
+        this.ExecuteByte(count);
         return true;
     }
 
@@ -181,6 +204,29 @@ class ClassWrite : Any
             this.ExecuteString(value);
         }
         return true;
+    }
+
+    protected virtual int CountData(ClassNodeCount count)
+    {
+        int a;
+        a = 0;
+        if (count is ClassNodePrudateCount)
+        {
+            a = 0;
+        }
+        if (count is ClassNodeProbateCount)
+        {
+            a = 1;
+        }
+        if (count is ClassNodePrecateCount)
+        {
+            a = 2;
+        }
+        if (count is ClassNodePrivateCount)
+        {
+            a = 3;
+        }
+        return a;
     }
 
     protected virtual int IsNullData(bool b)
