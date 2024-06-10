@@ -9,4 +9,8 @@
         <ProjectReference Include="../../../Class/Class/Class.Console/Class.Console.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Content Include="$(AssemblyName).data/*" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+
 </Project>
