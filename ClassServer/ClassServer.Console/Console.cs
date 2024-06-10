@@ -71,11 +71,17 @@ class Console : Any
 
         network.HostName = "localhost";
 
+        NetworkStatusState statusState;
+        statusState = new NetworkStatusState();
+        statusState.Console = this;
+        statusState.Init();
+
         NetworkCaseState caseState;
         caseState = new NetworkCaseState();
         caseState.Console = this;
         caseState.Init();
 
+        network.StatusChangeState = statusState;
         network.CaseChangeState = caseState;
 
         NetworkOpenState openState;
