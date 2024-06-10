@@ -143,6 +143,8 @@ class ClassWrite : Any
 
     protected virtual bool ExecuteField(ClassNodeField field)
     {
+        this.ExecuteByte(0);
+
         string varClass;
         varClass = null;
         if (!(field.Class == null))
@@ -167,6 +169,8 @@ class ClassWrite : Any
 
     protected virtual bool ExecuteMaide(ClassNodeMaide maide)
     {
+        this.ExecuteByte(1);
+        
         string varClass;
         varClass = null;
         if (!(maide.Class == null))
