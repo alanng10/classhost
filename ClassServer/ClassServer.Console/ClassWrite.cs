@@ -116,6 +116,8 @@ class ClassWrite : Any
 
             if (!(a == null))
             {
+                this.ExecuteComp(a);
+
                 kk = kk + 1;
             }
 
@@ -141,6 +143,21 @@ class ClassWrite : Any
 
     protected virtual bool ExecuteField(ClassNodeField field)
     {
+        string varClass;
+        varClass = null;
+        if (!(field.Class == null))
+        {
+            varClass = field.Class.Value;
+        }
+        this.ExecuteOptionalString(varClass);
+
+        string name;
+        name = null;
+        if (!(field.Name == null))
+        {
+            name = field.Name.Value;
+        }
+        this.ExecuteOptionalString(name);
         return true;
     }
 
