@@ -265,7 +265,6 @@ class ClassWrite : Any
 
             i = i + 1;
         }
-
         return true;
     }
 
