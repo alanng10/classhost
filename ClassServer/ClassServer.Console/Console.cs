@@ -7,6 +7,7 @@ class Console : Any
         base.Init();
         this.InfraInfra = InfraInfra.This;
         this.ListInfra = ListInfra.This;
+        this.StorageInfra = StorageInfra.This;
         this.ClassInfra = ClassInfra.This;
         this.ConsoleConsole = ConsoleConsole.This;
         this.ClassTaskKindList = ClassTaskKindList.This;
@@ -25,8 +26,10 @@ class Console : Any
     public virtual Network Network { get; set; }
     public virtual TimeInterval Interval { get; set; }
     public virtual int Stage { get; set; }
+    public virtual Thread Thread { get; set; }
     protected virtual InfraInfra InfraInfra { get; set; }
     protected virtual ListInfra ListInfra { get; set; }
+    protected virtual StorageInfra StorageInfra { get; set; }
     protected virtual ClassInfra ClassInfra { get; set; }
     protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual ClassTaskKindList ClassTaskKindList { get; set; }
@@ -99,9 +102,25 @@ class Console : Any
         Thread thread;
         thread = current.Thread;
 
-        thread.ExecuteEventLoop();
+        this.Thread = thread;
+
+        int o;
+        o = thread.ExecuteEventLoop();
 
         network.Final();
+
+        string k;
+        k = o.ToString();
+        
+        this.LogWrite(k);
+
+        this.Status = o;
+        return true;
+    }
+
+    protected virtual bool LogWrite(string text)
+    {
+        this.StorageInfra.TextWrite("ClassServer.Console.data/log.txt", text);
         return true;
     }
 

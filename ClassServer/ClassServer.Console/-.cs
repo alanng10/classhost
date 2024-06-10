@@ -10,6 +10,7 @@ global using Thread = Avalon.Thread.Thread;
 global using ThreadCurrent = Avalon.Thread.Current;
 global using Stream = Avalon.Stream.Stream;
 global using TimeInterval = Avalon.Time.Interval;
+global using StorageInfra = Avalon.Storage.Infra;
 global using Network = Avalon.Network.Network;
 global using NetworkStatus = Avalon.Network.Status;
 global using NetworkStatusList = Avalon.Network.StatusList;
