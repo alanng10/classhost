@@ -126,6 +126,29 @@ class ClassWrite : Any
         return true;
     }
 
+    protected virtual bool ExecuteComp(ClassNodeComp comp)
+    {
+        if (comp is ClassNodeField)
+        {
+            this.ExecuteField((ClassNodeField)comp);
+        }
+        if (comp is ClassNodeMaide)
+        {
+            this.ExecuteMaide((ClassNodeMaide)comp);
+        }
+        return true;
+    }
+
+    protected virtual bool ExecuteField(ClassNodeField field)
+    {
+        return true;
+    }
+
+    protected virtual bool ExecuteMaide(ClassNodeMaide maide)
+    {
+        return true;
+    }
+
     protected virtual bool ExecuteOptionalString(string value)
     {
         bool b;
