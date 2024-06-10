@@ -64,4 +64,145 @@ class ClassWrite : Any
     {
         return true;
     }
+
+    protected virtual bool ExecuteClass(ClassNodeClass varClass)
+    {
+        bool b;
+        b = (varClass == null);
+        int aa;
+        aa = 0;
+        if (b)
+        {
+            aa = 0;
+        }
+        if (!b)
+        {
+            aa = 1;
+        }
+
+        this.ExecuteByte(aa);
+
+        if (!b)
+        {
+            string name;
+            name = null;
+            if (!(varClass.Name == null))
+            {
+                name = varClass.Name.Value;
+            }
+            this.ExecuteOptionalString(name);
+
+            string varBase;
+            varBase = null;
+            if (!(varClass.Base == null))
+            {
+                varBase = varClass.Base.Value;
+            }
+            this.ExecuteOptionalString(varBase);
+        }
+
+        return true;
+    }
+
+    protected virtual bool ExecuteOptionalString(string value)
+    {
+        bool b;
+        b = (value == null);
+        
+        int aa;
+        aa = 0;
+        if (b)
+        {
+            aa = 0;
+        }
+        if (!b)
+        {
+            aa = 1;
+        }
+
+        this.ExecuteByte(aa);
+
+        if (!b)
+        {
+            this.ExecuteString(value);
+        }
+        return true;
+    }
+
+    protected virtual bool ExecuteString(string value)
+    {
+        int count;
+        count = value.Length;
+
+        this.ExecuteCount(count);
+
+        int i;
+        i = 0;
+        while (i < count)
+        {
+            char oc;
+            oc = value[i];
+
+            this.ExecuteChar(oc);
+
+            i = i + 1;
+        }
+
+        return true;
+    }
+
+    protected virtual bool ExecuteCount(int value)
+    {
+        return this.ExecuteMid((uint)value);
+    }
+
+    protected virtual bool ExecuteChar(char value)
+    {
+        ushort a;
+        a = (ushort)value;
+        return this.ExecuteShort(value);
+    }
+
+    protected virtual bool ExecuteShort(ushort value)
+    {
+        ulong a;
+        a = value;
+        return this.ExecuteInt(sizeof(ushort), a);
+    }
+
+    protected virtual bool ExecuteMid(uint value)
+    {
+        ulong a;
+        a = value;
+        return this.ExecuteInt(sizeof(uint), a);
+    }
+
+    protected virtual bool ExecuteInt(int count, ulong value)
+    {
+        int i;
+        i = 0;
+        while (i < count)
+        {
+            int shift;
+            shift = i * 8;
+
+            ulong k;
+            k = value >> shift;
+            k = k & 0xff;
+
+            int oo;
+            oo = (int)k;
+
+            this.ExecuteByte(oo);
+
+            i = i + 1;
+        }
+        return true;
+    }
+
+    protected virtual bool ExecuteByte(int value)
+    {
+        this.Operate.ExecuteByte(value);
+        return true;
+    }
 }
