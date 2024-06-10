@@ -101,7 +101,10 @@ class ClassWrite : Any
 
     protected virtual bool ExecuteMember(Array array)
     {
+        this.Operate.ExecuteMemberStart();
         
+        int kk;
+        kk = 0;
         int count;
         count = array.Count;
         int i;
@@ -113,12 +116,13 @@ class ClassWrite : Any
 
             if (!(a == null))
             {
-
+                kk = kk + 1;
             }
 
             i = i + 1;
         }
 
+        this.Operate.ExecuteMemberEnd(kk);
         return true;
     }
 
