@@ -62,6 +62,7 @@ class ClassWrite : Any
 
     protected virtual bool ExecuteStage()
     {
+        this.ExecuteClass(this.NodeClass);
         return true;
     }
 
