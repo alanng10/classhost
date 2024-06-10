@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <OutputPath>../../Out</OutputPath>
+        <AssemblyName>ClassServer.Console-1.00.00</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
