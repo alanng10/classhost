@@ -69,16 +69,9 @@ class ClassWrite : Any
     {
         bool b;
         b = (varClass == null);
+        
         int aa;
-        aa = 0;
-        if (b)
-        {
-            aa = 0;
-        }
-        if (!b)
-        {
-            aa = 1;
-        }
+        aa = this.IsNullData(b);
 
         this.ExecuteByte(aa);
 
@@ -110,6 +103,20 @@ class ClassWrite : Any
         b = (value == null);
         
         int aa;
+        aa = this.IsNullData(b);
+
+        this.ExecuteByte(aa);
+
+        if (!b)
+        {
+            this.ExecuteString(value);
+        }
+        return true;
+    }
+
+    protected virtual int IsNullData(bool b)
+    {
+        int aa;
         aa = 0;
         if (b)
         {
@@ -119,14 +126,7 @@ class ClassWrite : Any
         {
             aa = 1;
         }
-
-        this.ExecuteByte(aa);
-
-        if (!b)
-        {
-            this.ExecuteString(value);
-        }
-        return true;
+        return aa;
     }
 
     protected virtual bool ExecuteString(string value)
