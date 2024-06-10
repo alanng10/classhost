@@ -27,4 +27,13 @@ class ClassWriteSetOperate : ClassWriteOperate
         arg.Index = index + 1;
         return true;
     }
+
+    public override bool ExecuteMemberStart()
+    {
+        ClassWriteArg arg;
+        arg = this.Write.Arg;
+        
+        this.Write.ExecuteCount(arg.MemberCount);
+        return true;
+    }
 }

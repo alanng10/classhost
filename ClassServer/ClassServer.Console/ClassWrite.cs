@@ -92,6 +92,31 @@ class ClassWrite : Any
                 varBase = varClass.Base.Value;
             }
             this.ExecuteOptionalString(varBase);
+
+            this.ExecuteMember(varClass.Member.Value);
+        }
+
+        return true;
+    }
+
+    protected virtual bool ExecuteMember(Array array)
+    {
+        
+        int count;
+        count = array.Count;
+        int i;
+        i = 0;
+        while (i < count)
+        {
+            ClassNodeComp a;
+            a = (ClassNodeComp)array.Get(i);
+
+            if (!(a == null))
+            {
+
+            }
+
+            i = i + 1;
         }
 
         return true;
@@ -151,7 +176,7 @@ class ClassWrite : Any
         return true;
     }
 
-    protected virtual bool ExecuteCount(int value)
+    public virtual bool ExecuteCount(int value)
     {
         return this.ExecuteMid((uint)value);
     }

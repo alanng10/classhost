@@ -26,6 +26,7 @@ global using ClassNodeClassName = Class.Node.ClassName;
 global using ClassNodeFieldName = Class.Node.FieldName;
 global using ClassNodeMaideName = Class.Node.MaideName;
 global using ClassNodeVarName = Class.Node.VarName;
+global using ClassNodeComp = Class.Node.Comp;
 global using ClassNodeResult = Class.Node.Result;
 global using ClassConsole = Class.Console.Console;
 global using ClassTask = Class.Console.Task;

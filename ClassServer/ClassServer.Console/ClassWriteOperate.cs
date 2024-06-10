@@ -8,4 +8,14 @@ class ClassWriteOperate : Any
     {
         return false;
     }
+
+    public virtual bool ExecuteMemberStart()
+    {
+        return false;
+    }
+
+    public virtual bool ExecuteMemberEnd(int count)
+    {
+        return false;
+    }
 }
