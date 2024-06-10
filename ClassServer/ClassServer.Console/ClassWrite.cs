@@ -258,7 +258,10 @@ class ClassWrite : Any
             char oc;
             oc = value[i];
 
-            this.ExecuteChar(oc);
+            byte ob;
+            ob = (byte)oc;
+
+            this.ExecuteByte(ob);
 
             i = i + 1;
         }
@@ -269,20 +272,6 @@ class ClassWrite : Any
     public virtual bool ExecuteCount(int value)
     {
         return this.ExecuteMid((uint)value);
-    }
-
-    protected virtual bool ExecuteChar(char value)
-    {
-        ushort a;
-        a = (ushort)value;
-        return this.ExecuteShort(value);
-    }
-
-    protected virtual bool ExecuteShort(ushort value)
-    {
-        ulong a;
-        a = value;
-        return this.ExecuteInt(sizeof(ushort), a);
     }
 
     protected virtual bool ExecuteMid(uint value)
