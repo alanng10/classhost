@@ -21,6 +21,7 @@ class Console : Any
         return true;
     }
 
+    public virtual string HostName { get; set; }
     public virtual int Status { get; set; }
 
     public virtual Network Network { get; set; }
@@ -69,7 +70,7 @@ class Console : Any
 
         this.Network = network;
 
-        network.HostName = "localhost";
+        network.HostName = this.HostName;
 
         NetworkStatusState statusState;
         statusState = new NetworkStatusState();
