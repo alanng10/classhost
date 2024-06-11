@@ -1,4 +1,4 @@
 # ClassServer
 
 This is Class language server.
-It is a module has input and output through network.
+It is a module that has input and output through network.
