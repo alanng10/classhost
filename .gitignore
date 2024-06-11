@@ -3,11 +3,5 @@
 bin/
 obj/
 Actual
-*.pro.user
-*.vsix
 *.jpg
 *.png
-*.bmp
-*.wav
-*.m4a
-*.mp4
