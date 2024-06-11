@@ -44,16 +44,8 @@ class NetworkReadyState : State
         Network network;
         network = console.Network;
 
-        int stage;
-        stage = console.Stage;
-        
         Stream stream;
         stream = network.Stream;
-
-        if (stage == 0)
-        {
-            return true;
-        }
 
         long ka;
         ka = network.ReadyCount;

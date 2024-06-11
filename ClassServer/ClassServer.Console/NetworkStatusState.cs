@@ -23,26 +23,15 @@ class NetworkStatusState : State
         Network network;
         network = console.Network;
 
-        int stage;
-        stage = console.Stage;
-
         NetworkStatus status;
         status = network.Status;
 
-        if (stage == 0)
+
+        if (!(status == statusList.NoError))
         {
-
+            network.Close();
+            this.Console.Thread.ExitEventLoop(100 + status.Index);
         }
-
-        if (stage == 1)
-        {
-            if (!(status == statusList.NoError))
-            {
-                network.Close();
-                this.Console.Thread.ExitEventLoop(100 + status.Index);
-            }
-        }
-
         return true;
     }
 }
