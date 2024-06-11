@@ -38,6 +38,8 @@ class NetworkReadyState : State
 
     public override bool Execute()
     {
+        this.Console.Log("Network read Start");
+
         Console console;
         console = this.Console;
 
@@ -123,6 +125,8 @@ class NetworkReadyState : State
 
             this.DataCount = -1;
         }
+
+        this.Console.Log("Network read End");
         return true;
     }
 }

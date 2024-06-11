@@ -89,8 +89,14 @@ class Console : Any
         caseState.Console = this;
         caseState.Init();
 
+        NetworkReadyState readyState;
+        readyState = new NetworkReadyState();
+        readyState.Console = this;
+        readyState.Init();
+
         network.StatusChangeState = statusState;
         network.CaseChangeState = caseState;
+        network.ReadyReadState = readyState;
 
         NetworkOpenState openState;
         openState = new NetworkOpenState();
@@ -217,10 +223,6 @@ class Console : Any
     public virtual Data ExecuteClass(string sourceString)
     {
         this.Log("Console.ExecueClass Start");
-
-        this.Log("Console.ExecuteClass sourceString Start");
-        this.Log(sourceString);
-        this.Log("Console.ExecuteClass sourceString End");
 
         Array text;
         text = this.ClassInfra.TextCreate(sourceString);
