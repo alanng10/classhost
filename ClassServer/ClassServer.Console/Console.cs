@@ -125,20 +125,23 @@ class Console : Any
 
         this.Thread = thread;
 
-        this.Log("ClassServer.Console:Console.Execute EventLoop Start");
+        // this.Log("ClassServer.Console:Console.Execute EventLoop Start");
 
         int o;
         o = thread.ExecuteEventLoop();
 
-        this.Log("ClassServer.Console:Console.Execute EventLoop End");
+        // this.Log("ClassServer.Console:Console.Execute EventLoop End");
 
         network.Final();
 
-        string k;
-        k = o.ToString();
-        
-        this.Log("Console Exit Status: " + k);
+        if (!(o == 0))
+        {
+            string k;
+            k = o.ToString();
 
+            this.Log("Console Exit Status: " + k);
+        }
+        
         this.Status = o;
         return true;
     }
