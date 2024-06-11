@@ -23,28 +23,15 @@ class NetworkCaseState : State
         Network network;
         network = console.Network;
 
-        int stage;
-        stage = console.Stage;
-        
         NetworkCase cc;
         cc = network.Case;
         
-        if (stage == 0)
+        if (cc == caseList.Connected)
         {
-            if (cc == caseList.Connected)
-            {
-                network.Close();
-            }
-
-            if (cc == caseList.Unconnected)
-            {
-                console.Stage = 1;
-
-                console.Interval.Start();
-            }
+            
         }
 
-        if (stage == 1)
+        if (cc == caseList.Unconnected)
         {
             
         }

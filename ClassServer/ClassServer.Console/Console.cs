@@ -22,12 +22,12 @@ class Console : Any
     }
 
     public virtual string HostName { get; set; }
+    public virtual int ServerPort { get; set; }
     public virtual int Status { get; set; }
 
     public virtual Network Network { get; set; }
-    public virtual TimeInterval Interval { get; set; }
-    public virtual int Stage { get; set; }
     public virtual Thread Thread { get; set; }
+    public virtual TimeInterval Interval { get; set; }
     protected virtual InfraInfra InfraInfra { get; set; }
     protected virtual ListInfra ListInfra { get; set; }
     protected virtual StorageInfra StorageInfra { get; set; }
@@ -71,6 +71,7 @@ class Console : Any
         this.Network = network;
 
         network.HostName = this.HostName;
+        network.ServerPort = this.ServerPort;
 
         NetworkStatusState statusState;
         statusState = new NetworkStatusState();
