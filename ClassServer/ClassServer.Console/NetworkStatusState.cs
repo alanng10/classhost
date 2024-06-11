@@ -26,11 +26,10 @@ class NetworkStatusState : State
         NetworkStatus status;
         status = network.Status;
 
-
         if (!(status == statusList.NoError))
         {
             network.Close();
-            this.Console.Thread.ExitEventLoop(100 + status.Index);
+            console.Thread.ExitEventLoop(100 + status.Index);
         }
         return true;
     }
