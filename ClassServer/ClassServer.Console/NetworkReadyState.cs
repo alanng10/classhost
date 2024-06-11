@@ -66,7 +66,11 @@ class NetworkReadyState : State
                 return true;
             }
 
+            this.Console.Log("Network read count 1111");
+
             stream.Read(this.CountData, this.CountRange);
+
+            this.Console.Log("Network read count 2222");
 
             uint u;
             u = this.InfraInfra.DataMidGet(this.CountData, 0);

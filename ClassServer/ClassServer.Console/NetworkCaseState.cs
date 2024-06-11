@@ -28,12 +28,12 @@ class NetworkCaseState : State
         
         if (cc == caseList.Connected)
         {
-            
+            this.Console.Log("ClassServer.Console:NetworkCaseState.Execute Connected");
         }
 
         if (cc == caseList.Unconnected)
         {
-            
+            this.Console.Log("ClassServer.Console:NetworkCaseState.Execute Unconnected");
         }
         
         return true;

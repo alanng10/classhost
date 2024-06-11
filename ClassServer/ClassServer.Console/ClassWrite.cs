@@ -72,7 +72,7 @@ class ClassWrite : Any
         b = (varClass == null);
         
         int aa;
-        aa = this.IsNullData(b);
+        aa = this.OptionalData(b);
 
         this.ExecuteByte(aa);
 
@@ -200,7 +200,7 @@ class ClassWrite : Any
         b = (value == null);
         
         int aa;
-        aa = this.IsNullData(b);
+        aa = this.OptionalData(b);
 
         this.ExecuteByte(aa);
 
@@ -234,14 +234,10 @@ class ClassWrite : Any
         return a;
     }
 
-    protected virtual int IsNullData(bool b)
+    protected virtual int OptionalData(bool b)
     {
         int aa;
         aa = 0;
-        if (b)
-        {
-            aa = 0;
-        }
         if (!b)
         {
             aa = 1;

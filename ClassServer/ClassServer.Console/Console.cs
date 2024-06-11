@@ -7,7 +7,10 @@ class Console : Any
         base.Init();
         this.InfraInfra = InfraInfra.This;
         this.ListInfra = ListInfra.This;
+        this.TextInfra = TextInfra.This;
         this.StorageInfra = StorageInfra.This;
+        this.TextEncodeKindList = TextEncodeKindList.This;
+        this.StorageStatusList = StorageStatusList.This;
         this.ClassInfra = ClassInfra.This;
         this.ConsoleConsole = ConsoleConsole.This;
         this.ClassTaskKindList = ClassTaskKindList.This;
@@ -30,7 +33,10 @@ class Console : Any
     public virtual TimeInterval Interval { get; set; }
     protected virtual InfraInfra InfraInfra { get; set; }
     protected virtual ListInfra ListInfra { get; set; }
+    protected virtual TextInfra TextInfra { get; set; }
     protected virtual StorageInfra StorageInfra { get; set; }
+    protected virtual TextEncodeKindList TextEncodeKindList { get; set; }
+    protected virtual StorageStatusList StorageStatusList { get; set; }
     protected virtual ClassInfra ClassInfra { get; set; }
     protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual ClassTaskKindList ClassTaskKindList { get; set; }
@@ -112,28 +118,110 @@ class Console : Any
 
         this.Thread = thread;
 
+        this.Log("ClassServer.Console:Console.Execute EventLoop Start");
+
         int o;
         o = thread.ExecuteEventLoop();
+
+        this.Log("ClassServer.Console:Console.Execute EventLoop End");
 
         network.Final();
 
         string k;
         k = o.ToString();
         
-        this.LogWrite(k);
+        this.Log("Console Exit Status: " + k);
 
         this.Status = o;
         return true;
     }
 
-    protected virtual bool LogWrite(string text)
+    public virtual bool Log(string text)
     {
-        this.StorageInfra.TextWrite("ClassServer.Console.data/log.txt", text);
-        return true;
+        string aa;
+        aa = text + "\n";
+
+        StorageStatusList statusList;
+        statusList = this.StorageStatusList;
+
+        bool oo;
+        oo = false;
+        
+        StorageMode mode;
+        mode = new StorageMode();
+        mode.Init();
+        mode.Read = true;
+        mode.Write = true;
+        mode.Existing = true;
+
+        Storage a;
+        a = new Storage();
+        a.Init();
+        a.Path = "ClassServer.Console.data/log.txt";
+        a.Mode = mode;
+        a.Open();
+
+        if (a.Status == statusList.NoError)
+        {
+            long kn;
+            kn = a.Stream.Count;
+
+            a.Stream.PosSet(kn);
+
+            if (a.Status == statusList.NoError)
+            {
+                TextEncode encode;
+                encode = new TextEncode();
+                encode.Kind = this.TextEncodeKindList.Utf8;
+                encode.Init();
+
+                Text o;
+                o = this.TextInfra.TextCreateString(aa, null);
+                int kk;
+                kk = o.Range.Count;
+                long ka;
+                ka = encode.DataCountMax(kk);
+
+                Data data;
+                data = new Data();
+                data.Count = ka;
+                data.Init();
+
+                long kb;
+                kb = encode.Data(data, 0, o);
+
+                encode.Final();
+
+                long count;
+                count = kb;
+                DataRange range;
+                range = new DataRange();
+                range.Init();
+                range.Count = count;
+
+                a.Stream.Write(data, range);
+
+                if (a.Status == statusList.NoError)
+                {
+                    oo = true;
+                }
+            }   
+        }
+
+        a.Close();
+        a.Final();
+
+        return oo;
     }
 
     public virtual Data ExecuteClass(string sourceString)
     {
+        this.Log("Console.ExecueClass Start");
+
+        this.Log("Console.ExecuteClass sourceString Start");
+        this.Log(sourceString);
+        this.Log("Console.ExecuteClass sourceString End");
+
         Array text;
         text = this.ClassInfra.TextCreate(sourceString);
 
@@ -176,6 +264,8 @@ class Console : Any
         u = (uint)k;
 
         this.InfraInfra.DataMidSet(data, 0, u);
+
+        this.Log("Console.ExecueClass End");
         return data;
     }
 }
