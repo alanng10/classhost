@@ -116,6 +116,8 @@ class NetworkReadyState : State
             range.Count = data.Count;
 
             stream.Write(data, range);
+
+            this.DataCount = -1;
         }
         return true;
     }
