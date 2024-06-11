@@ -38,7 +38,7 @@ class NetworkReadyState : State
 
     public override bool Execute()
     {
-        this.Console.Log("Network read Start");
+        // this.Console.Log("Network read Start");
 
         Console console;
         console = this.Console;
@@ -68,12 +68,8 @@ class NetworkReadyState : State
                 return true;
             }
 
-            this.Console.Log("Network read count 1111");
-
             stream.Read(this.CountData, this.CountRange);
-
-            this.Console.Log("Network read count 2222");
-
+            
             uint u;
             u = this.InfraInfra.DataMidGet(this.CountData, 0);
             
@@ -82,9 +78,11 @@ class NetworkReadyState : State
             
             if (ke < 0)
             {
-                this.ConsoleConsole.Err.Write("Network received data count invalid");
+                this.Console.Log("Network received data count invalid");
                 return true;
             }
+
+            // this.Console.Log("Network received data count: " + ke.ToString());
 
             this.DataCount = ke;
 
@@ -126,7 +124,7 @@ class NetworkReadyState : State
             this.DataCount = -1;
         }
 
-        this.Console.Log("Network read End");
+        // this.Console.Log("Network read End");
         return true;
     }
 }
