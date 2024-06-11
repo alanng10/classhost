@@ -19,6 +19,7 @@ class Console : Any
         this.ClassConsole.Init();
 
         this.ClassWrite = new ClassWrite();
+        this.ClassWrite.Console = this;
         this.ClassWrite.Init();
         this.ClassWrite.Start = sizeof(int);
         return true;
@@ -222,7 +223,7 @@ class Console : Any
 
     public virtual Data ExecuteClass(string sourceString)
     {
-        this.Log("Console.ExecueClass Start");
+        // this.Log("Console.ExecueClass Start");
 
         Array text;
         text = this.ClassInfra.TextCreate(sourceString);
@@ -262,12 +263,40 @@ class Console : Any
         
         k = k - write.Start;
 
+        // this.Log("Out Data count: " + k);
+
+        // this.Log("Out Data Start");
+
+        // int start;
+        // start = write.Start;
+        // int count;
+        // count = k;
+        // int i;
+        // i = 0;
+        // while (i < count)
+        // {
+        //     int oo;
+        //     oo = data.Get(start + i);
+
+        //     byte ob;
+        //     ob = (byte)oo;
+
+        //     string kkk;
+        //     kkk = ob.ToString("x2");
+
+        //     this.Log(kkk);
+            
+        //     i = i + 1;
+        // }
+
+        // this.Log("Out Data End");
+
         uint u;
         u = (uint)k;
 
         this.InfraInfra.DataMidSet(data, 0, u);
 
-        this.Log("Console.ExecueClass End");
+        // this.Log("Console.ExecueClass End");
         return data;
     }
 }
