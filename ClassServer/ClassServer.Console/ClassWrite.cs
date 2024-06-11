@@ -15,6 +15,7 @@ class ClassWrite : Any
         return true;
     }
 
+    public virtual Console Console { get; set; }
     public virtual ClassNodeClass NodeClass { get; set; }
     public virtual int Start { get; set; }
     public virtual Data Data { get; set; }
@@ -86,12 +87,20 @@ class ClassWrite : Any
             }
             this.ExecuteOptionalString(name);
 
+            // bool ba;
+            // ba = (varClass.Base == null);
+            // this.Console.Log("ClassWrite.ExecuteClass varClass.Base is null: " + ba.ToString().ToLower());
+            
             string varBase;
             varBase = null;
             if (!(varClass.Base == null))
             {
                 varBase = varClass.Base.Value;
             }
+
+            // ba = (varBase == null);
+            // this.Console.Log("ClassWrite.ExecuteClass varBase is null: " + ba.ToString().ToLower());
+            
             this.ExecuteOptionalString(varBase);
 
             this.ExecuteMember(varClass.Member.Value);
@@ -115,6 +124,10 @@ class ClassWrite : Any
             ClassNodeComp a;
             a = (ClassNodeComp)array.Get(i);
 
+            // bool ba;
+            // ba = (a == null);
+            // this.Console.Log("ClassWrite.ExecuteMember ClassNodeComp is null: " + ba.ToString().ToLower());
+
             if (!(a == null))
             {
                 this.ExecuteComp(a);
@@ -124,6 +137,8 @@ class ClassWrite : Any
 
             i = i + 1;
         }
+
+        // this.Console.Log("ClassWrite.ExecuteMember array count: " + count + ", comp count: " + kk);
 
         this.Operate.ExecuteMemberEnd(kk);
         return true;
