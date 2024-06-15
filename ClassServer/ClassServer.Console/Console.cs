@@ -22,6 +22,15 @@ class Console : Any
         this.ClassWrite.Console = this;
         this.ClassWrite.Init();
         this.ClassWrite.Start = sizeof(int);
+
+        this.TextNewLine = this.TextInfra.TextCreateStringData(this.ClassInfra.NewLine, null);
+
+        IntCompare charCompare;
+        charCompare = new IntCompare();
+        charCompare.Init();
+        this.TextCompare = new TextCompare();
+        this.TextCompare.CharCompare = charCompare;
+        this.TextCompare.Init();
         return true;
     }
 
@@ -44,6 +53,8 @@ class Console : Any
     protected virtual ClassConsole ClassConsole { get; set; }
     protected virtual ClassSource ClassSource { get; set; }
     protected virtual ClassWrite ClassWrite { get; set; }
+    protected virtual Text TextNewLine { get; set; }
+    protected virtual TextCompare TextCompare { get; set; }
 
     public virtual bool Execute()
     {
@@ -228,8 +239,13 @@ class Console : Any
     {
         // this.Log("Console.ExecueClass Start");
 
+        Range rangeA;
+        rangeA = new Range();
+        rangeA.Init();
+        rangeA.Count = sourceString.Length;
+
         Array text;
-        text = this.TextInfra.TextArrayCreateStringData(sourceString);
+        text = this.TextInfra.TextArraySplitStringData(sourceString, rangeA, this.TextNewLine, this.TextCompare);
 
         this.ClassSource.Text = text;
 
