@@ -100,6 +100,8 @@ class ClassWrite : Any
             }
 
             this.ExecuteMember(varClass.Member.Value);
+
+            this.ExecuteRange(varClass.Range);
         }
 
         return true;
