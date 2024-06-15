@@ -229,7 +229,7 @@ class Console : Any
         // this.Log("Console.ExecueClass Start");
 
         Array text;
-        text = this.ClassInfra.TextCreate(sourceString);
+        text = this.TextInfra.TextArrayCreateStringData(sourceString);
 
         this.ClassSource.Text = text;
 
