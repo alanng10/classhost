@@ -238,6 +238,9 @@ class Console : Any
         ClassNodeResult result;
         result = this.ClassConsole.Result.Node;
 
+        ClassTokenResult tokenResult;
+        tokenResult = this.ClassConsole.Result.Token;
+        
         this.ClassConsole.Result = null;
 
         this.ClassSource.Text = null;
@@ -248,10 +251,18 @@ class Console : Any
         ClassNodeClass varClass;
         varClass = (ClassNodeClass)aa.Get(0);
 
+        Array ab;
+        ab = tokenResult.Code;
+
+        ClassTokenCode code;
+        code = (ClassTokenCode)ab.Get(0);
+
         ClassWrite write;
         write = this.ClassWrite;
 
         write.NodeClass = varClass;
+        write.TokenCode = code;
+        write.SourceText = text;
 
         write.Execute();
 
@@ -259,6 +270,9 @@ class Console : Any
         data = write.Data;
 
         write.Data = null;
+
+        write.SourceText = null;
+        write.TokenCode = null;
         write.NodeClass = null;
 
         int k;
