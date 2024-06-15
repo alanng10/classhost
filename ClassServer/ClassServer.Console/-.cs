@@ -1,4 +1,5 @@
 global using Any = Avalon.Infra.Any;
+global using Range = Avalon.Infra.Range;
 global using Data = Avalon.Infra.Data;
 global using DataRange = Avalon.Infra.DataRange;
 global using State = Avalon.Infra.State;
@@ -28,7 +29,11 @@ global using NetworkCaseList = Avalon.Network.CaseList;
 global using ConsoleConsole = Avalon.Console.Console;
 global using EntryEntry = Avalon.Entry.Entry;
 global using ClassSource = Class.Infra.Source;
+global using ClassInfraRange = Class.Infra.Range;
 global using ClassInfra = Class.Infra.Infra;
+global using ClassTokenCode = Class.Token.Code;
+global using ClassTokenToken = Class.Token.Token;
+global using ClassTokenResult = Class.Token.Result;
 global using ClassNodeNode = Class.Node.Node;
 global using ClassNodeClass = Class.Node.Class;
 global using ClassNodeField = Class.Node.Field;

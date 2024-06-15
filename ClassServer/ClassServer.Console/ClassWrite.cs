@@ -17,6 +17,8 @@ class ClassWrite : Any
 
     public virtual Console Console { get; set; }
     public virtual ClassNodeClass NodeClass { get; set; }
+    public virtual ClassTokenCode TokenCode { get; set; }
+    public virtual Array SourceText { get; set; }
     public virtual int Start { get; set; }
     public virtual Data Data { get; set; }
     public virtual ClassWriteArg Arg { get; set; }
@@ -79,13 +81,25 @@ class ClassWrite : Any
 
         if (!b)
         {
+            ClassInfraRange range;
+            range = null;
+            
             string name;
             name = null;
-            if (!(varClass.Name == null))
+            
+            ClassNodeClassName kaa;
+            kaa = varClass.Name;
+            if (!(kaa == null))
             {
-                name = varClass.Name.Value;
+                name = kaa.Value;
+                range = kaa.Range;
             }
             this.ExecuteOptionalString(name);
+            if (!(range == null))
+            {
+                this.ExecuteRange(range);
+            }
+            range = null;
 
             // bool ba;
             // ba = (varClass.Base == null);
@@ -93,15 +107,22 @@ class ClassWrite : Any
             
             string varBase;
             varBase = null;
-            if (!(varClass.Base == null))
+            kaa = varClass.Base;
+            if (!(kaa == null))
             {
-                varBase = varClass.Base.Value;
+                varBase = kaa.Value;
+                range = kaa.Range;
             }
 
             // ba = (varBase == null);
             // this.Console.Log("ClassWrite.ExecuteClass varBase is null: " + ba.ToString().ToLower());
             
             this.ExecuteOptionalString(varBase);
+            if (!(range == null))
+            {
+                this.ExecuteRange(range);
+            }
+            range = null;
 
             this.ExecuteMember(varClass.Member.Value);
         }
@@ -209,6 +230,41 @@ class ClassWrite : Any
         return true;
     }
 
+    protected virtual bool ExecuteRange(ClassInfraRange range)
+    {
+        ClassTokenCode code;
+        code = this.TokenCode;
+
+        ClassTokenToken firstToken;
+        firstToken = (ClassTokenToken)code.Token.Get(range.Start);
+
+        Text line;
+        line = (Text)this.SourceText.Get(firstToken.Row);
+        
+        Range tokenRange;
+        tokenRange = firstToken.Range;
+        
+        int index;
+        index = line.Range.Index + tokenRange.Index;
+        
+        ClassTokenToken lastToken;
+        lastToken = (ClassTokenToken)code.Token.Get(range.End - 1);
+
+        line = (Text)this.SourceText.Get(lastToken.Row);
+
+        tokenRange = lastToken.Range;
+
+        int end;
+        end = line.Range.Index + tokenRange.Index + tokenRange.Count;
+
+        int count;
+        count = end - index;
+
+        this.ExecuteIndex(index);
+        this.ExecuteCount(count);
+        return true;
+    }
+
     protected virtual bool ExecuteOptionalString(string value)
     {
         bool b;
@@ -284,7 +340,17 @@ class ClassWrite : Any
         return true;
     }
 
+    public virtual bool ExecuteIndex(int value)
+    {
+        return this.ExecuteSMid(value);
+    }
+
     public virtual bool ExecuteCount(int value)
+    {
+        return this.ExecuteSMid(value);
+    }
+
+    public virtual bool ExecuteSMid(int value)
     {
         return this.ExecuteMid((uint)value);
     }
