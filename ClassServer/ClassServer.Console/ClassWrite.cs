@@ -81,48 +81,23 @@ class ClassWrite : Any
 
         if (!b)
         {
-            ClassInfraRange range;
-            range = null;
-            
-            string name;
-            name = null;
-            
             ClassNodeClassName kaa;
+            
             kaa = varClass.Name;
+            this.ExecuteClassName(kaa);
+
             if (!(kaa == null))
             {
-                name = kaa.Value;
-                range = kaa.Range;
+                this.ExecuteRange(kaa.Range);
             }
-            this.ExecuteOptionalString(name);
-            if (!(range == null))
-            {
-                this.ExecuteRange(range);
-            }
-            range = null;
-
-            // bool ba;
-            // ba = (varClass.Base == null);
-            // this.Console.Log("ClassWrite.ExecuteClass varClass.Base is null: " + ba.ToString().ToLower());
             
-            string varBase;
-            varBase = null;
             kaa = varClass.Base;
+            this.ExecuteClassName(kaa);
+
             if (!(kaa == null))
             {
-                varBase = kaa.Value;
-                range = kaa.Range;
+                this.ExecuteRange(kaa.Range);
             }
-
-            // ba = (varBase == null);
-            // this.Console.Log("ClassWrite.ExecuteClass varBase is null: " + ba.ToString().ToLower());
-            
-            this.ExecuteOptionalString(varBase);
-            if (!(range == null))
-            {
-                this.ExecuteRange(range);
-            }
-            range = null;
 
             this.ExecuteMember(varClass.Member.Value);
         }
@@ -182,13 +157,7 @@ class ClassWrite : Any
     {
         this.ExecuteByte(0);
 
-        string varClass;
-        varClass = null;
-        if (!(field.Class == null))
-        {
-            varClass = field.Class.Value;
-        }
-        this.ExecuteOptionalString(varClass);
+        this.ExecuteClassName(field.Class);
 
         string name;
         name = null;
@@ -201,6 +170,8 @@ class ClassWrite : Any
         int count;
         count = this.CountData(field.Count);
         this.ExecuteByte(count);
+
+        this.ExecuteRange(field.Range);
         return true;
     }
 
@@ -208,13 +179,7 @@ class ClassWrite : Any
     {
         this.ExecuteByte(1);
         
-        string varClass;
-        varClass = null;
-        if (!(maide.Class == null))
-        {
-            varClass = maide.Class.Value;
-        }
-        this.ExecuteOptionalString(varClass);
+        this.ExecuteClassName(maide.Class);
 
         string name;
         name = null;
@@ -227,6 +192,20 @@ class ClassWrite : Any
         int count;
         count = this.CountData(maide.Count);
         this.ExecuteByte(count);
+
+        this.ExecuteRange(maide.Range);
+        return true;
+    }
+
+    protected virtual bool ExecuteClassName(ClassNodeClassName a)
+    {
+        string varClass;
+        varClass = null;
+        if (!(a == null))
+        {
+            varClass = a.Value;
+        }
+        this.ExecuteOptionalString(varClass);
         return true;
     }
 
