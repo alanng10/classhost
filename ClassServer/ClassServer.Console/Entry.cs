@@ -4,8 +4,6 @@ public class Entry : EntryEntry
 {
     protected override int ExecuteMain()
     {
-        global::System.Console.Write("ClassServer.Console:Entry Start\n");
-
         TextInfra textInfra;
         textInfra = TextInfra.This;
 
