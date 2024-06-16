@@ -31,6 +31,11 @@ public class Entry : EntryEntry
         long nn;
         nn = parse.Execute(k, 10, false);
 
+        if (nn == -1)
+        {
+            return 11;
+        }
+
         int serverPort;
         serverPort = (int)nn;
 
