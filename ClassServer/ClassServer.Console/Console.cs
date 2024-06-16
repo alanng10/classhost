@@ -239,13 +239,11 @@ class Console : Any
     {
         // this.Log("Console.ExecueClass Start");
 
-        Range rangeA;
-        rangeA = new Range();
-        rangeA.Init();
-        rangeA.Count = sourceString.Length;
+        Text textA;
+        textA = this.TextInfra.TextCreateStringData(sourceString, null);
 
         Array text;
-        text = this.TextInfra.TextArraySplitStringData(sourceString, rangeA, this.TextNewLine, this.TextCompare);
+        text = this.TextInfra.TextArraySplit(textA, this.TextNewLine, this.TextCompare);
 
         this.ClassSource.Text = text;
 
