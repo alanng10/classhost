@@ -155,47 +155,47 @@ class ClassWrite : Any
         return true;
     }
 
-    protected virtual bool ExecuteField(ClassNodeField field)
+    protected virtual bool ExecuteField(ClassNodeField varField)
     {
         this.ExecuteByte(0);
 
-        this.ExecuteClassName(field.Class);
+        this.ExecuteClassName(varField.Class);
 
         string name;
         name = null;
-        if (!(field.Name == null))
+        if (!(varField.Name == null))
         {
-            name = field.Name.Value;
+            name = varField.Name.Value;
         }
         this.ExecuteOptionalString(name);
 
         int count;
-        count = this.CountData(field.Count);
+        count = this.CountData(varField.Count);
         this.ExecuteByte(count);
 
-        this.ExecuteRange(field.Range);
+        this.ExecuteRange(varField.Range);
         return true;
     }
 
-    protected virtual bool ExecuteMaide(ClassNodeMaide maide)
+    protected virtual bool ExecuteMaide(ClassNodeMaide varMaide)
     {
         this.ExecuteByte(1);
         
-        this.ExecuteClassName(maide.Class);
+        this.ExecuteClassName(varMaide.Class);
 
         string name;
         name = null;
-        if (!(maide.Name == null))
+        if (!(varMaide.Name == null))
         {
-            name = maide.Name.Value;
+            name = varMaide.Name.Value;
         }
         this.ExecuteOptionalString(name);
 
         int count;
-        count = this.CountData(maide.Count);
+        count = this.CountData(varMaide.Count);
         this.ExecuteByte(count);
 
-        this.ExecuteRange(maide.Range);
+        this.ExecuteRange(varMaide.Range);
         return true;
     }
 
