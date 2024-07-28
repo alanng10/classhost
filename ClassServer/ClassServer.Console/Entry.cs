@@ -12,7 +12,7 @@ public class Entry : EntryEntry
 
         if (arg.Count < 2)
         {
-            return 10;
+            return 310;
         }
 
         string hostName;
@@ -33,22 +33,22 @@ public class Entry : EntryEntry
 
         if (nn == -1)
         {
-            return 11;
+            return 311;
         }
 
-        int serverPort;
-        serverPort = (int)nn;
+        int hostPort;
+        hostPort = (int)nn;
 
         Console a;
         a = new Console();
         a.Init();
 
         a.HostName = hostName;
-        a.HostPort = serverPort;
+        a.HostPort = hostPort;
         a.Execute();
 
         int o;
-        o = a.Status + 100;
+        o = a.Status + 400;
         return o;
     }
 }
