@@ -11,8 +11,8 @@ class NetworkReadyState : State
         this.StringCreate = new StringCreate();
         this.StringCreate.Init();
 
-        this.DataRange = new DataRange();
-        this.DataRange.Init();
+        this.RangeInt = new RangeInt();
+        this.RangeInt.Init();
 
         this.DataCount = -1;
 
@@ -20,7 +20,7 @@ class NetworkReadyState : State
         this.CountData.Count = sizeof(int);
         this.CountData.Init();
 
-        this.CountRange = new DataRange();
+        this.CountRange = new RangeInt();
         this.CountRange.Init();
         this.CountRange.Count = this.CountData.Count;
         return true;
@@ -30,11 +30,11 @@ class NetworkReadyState : State
     protected virtual InfraInfra InfraInfra { get; set; }
     protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual StringCreate StringCreate { get; set; }
-    protected virtual DataRange DataRange { get; set; }
+    protected virtual RangeInt RangeInt { get; set; }
 
     private int DataCount { get; set; }
     private Data CountData { get; set; }
-    private DataRange CountRange { get; set; }
+    private RangeInt CountRange { get; set; }
 
     public override bool Execute()
     {
@@ -105,8 +105,8 @@ class NetworkReadyState : State
             data.Count = dataCount;
             data.Init();
 
-            DataRange range;
-            range = this.DataRange;
+            RangeInt range;
+            range = this.RangeInt;
 
             range.Count = dataCount;
 
