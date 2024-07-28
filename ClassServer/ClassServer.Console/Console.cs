@@ -40,7 +40,7 @@ class Console : Any
 
     public virtual Network Network { get; set; }
     public virtual Thread Thread { get; set; }
-    public virtual TimeInterval Interval { get; set; }
+    public virtual TimeEvent Interval { get; set; }
     protected virtual InfraInfra InfraInfra { get; set; }
     protected virtual ListInfra ListInfra { get; set; }
     protected virtual TextInfra TextInfra { get; set; }
@@ -115,8 +115,8 @@ class Console : Any
         openState.Console = this;
         openState.Init();
 
-        TimeInterval interval;
-        interval = new TimeInterval();
+        TimeEvent interval;
+        interval = new TimeEvent();
         interval.Init();
 
         this.Interval = interval;
@@ -127,8 +127,8 @@ class Console : Any
 
         interval.Start();
 
-        ThreadCurrent current;
-        current = new ThreadCurrent();
+        ThreadThis current;
+        current = new ThreadThis();
         current.Init();
 
         Thread thread;
