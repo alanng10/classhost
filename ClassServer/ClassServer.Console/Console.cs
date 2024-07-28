@@ -78,7 +78,7 @@ class Console : Any
 
         Array array;
         array = this.ListInfra.ArrayCreate(1);
-        array.Set(0, source);
+        array.SetAt(0, source);
         
         this.ClassConsole.Source = array;
 
