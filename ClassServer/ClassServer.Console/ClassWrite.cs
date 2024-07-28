@@ -120,7 +120,7 @@ class ClassWrite : Any
         while (i < count)
         {
             ClassNodeComp a;
-            a = (ClassNodeComp)array.Get(i);
+            a = (ClassNodeComp)array.GetAt(i);
 
             // bool ba;
             // ba = (a == null);
@@ -217,10 +217,10 @@ class ClassWrite : Any
         code = this.TokenCode;
 
         ClassTokenToken firstToken;
-        firstToken = (ClassTokenToken)code.Token.Get(range.Start);
+        firstToken = (ClassTokenToken)code.Token.GetAt(range.Start);
 
         Text line;
-        line = (Text)this.SourceText.Get(firstToken.Row);
+        line = (Text)this.SourceText.GetAt(firstToken.Row);
         
         Range tokenRange;
         tokenRange = firstToken.Range;
@@ -229,9 +229,9 @@ class ClassWrite : Any
         index = line.Range.Index + tokenRange.Index;
         
         ClassTokenToken lastToken;
-        lastToken = (ClassTokenToken)code.Token.Get(range.End - 1);
+        lastToken = (ClassTokenToken)code.Token.GetAt(range.End - 1);
 
-        line = (Text)this.SourceText.Get(lastToken.Row);
+        line = (Text)this.SourceText.GetAt(lastToken.Row);
 
         tokenRange = lastToken.Range;
 

@@ -16,14 +16,14 @@ public class Entry : EntryEntry
         }
 
         string hostName;
-        hostName = (string)arg.Get(0);
+        hostName = (string)arg.GetAt(0);
 
         IntParse parse;
         parse = new IntParse();
         parse.Init();
 
         string ka;
-        ka = (string)arg.Get(1);
+        ka = (string)arg.GetAt(1);
 
         Text k;
         k = textInfra.TextCreateStringData(ka, null);

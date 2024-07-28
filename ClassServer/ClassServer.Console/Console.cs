@@ -263,13 +263,13 @@ class Console : Any
         aa = result.Root;
 
         ClassNodeClass varClass;
-        varClass = (ClassNodeClass)aa.Get(0);
+        varClass = (ClassNodeClass)aa.GetAt(0);
 
         Array ab;
         ab = tokenResult.Code;
 
         ClassTokenCode code;
-        code = (ClassTokenCode)ab.Get(0);
+        code = (ClassTokenCode)ab.GetAt(0);
 
         ClassWrite write;
         write = this.ClassWrite;
