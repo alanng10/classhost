@@ -44,7 +44,7 @@ public class Entry : EntryEntry
         a.Init();
 
         a.HostName = hostName;
-        a.ServerPort = serverPort;
+        a.HostPort = serverPort;
         a.Execute();
 
         int o;

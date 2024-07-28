@@ -35,7 +35,7 @@ class Console : Any
     }
 
     public virtual string HostName { get; set; }
-    public virtual int ServerPort { get; set; }
+    public virtual int HostPort { get; set; }
     public virtual int Status { get; set; }
 
     public virtual Network Network { get; set; }
@@ -89,7 +89,7 @@ class Console : Any
         this.Network = network;
 
         network.HostName = this.HostName;
-        network.ServerPort = this.ServerPort;
+        network.HostPort = this.HostPort;
 
         NetworkStatusState statusState;
         statusState = new NetworkStatusState();
@@ -121,7 +121,7 @@ class Console : Any
 
         this.Interval = interval;
 
-        interval.SingleShot = true;
+        interval.Single = true;
         interval.Time = 0;
         interval.Elapse.State.AddState(openState);
 
@@ -173,7 +173,7 @@ class Console : Any
         mode.Init();
         mode.Read = true;
         mode.Write = true;
-        mode.Existing = true;
+        mode.Exist = true;
 
         Storage a;
         a = new Storage();

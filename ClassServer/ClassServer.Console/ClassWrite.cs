@@ -99,7 +99,7 @@ class ClassWrite : Any
                 this.ExecuteRange(kaa.Range);
             }
 
-            this.ExecuteMember(varClass.Member.Value);
+            this.ExecuteMember(varClass.Part.Value);
 
             this.ExecuteRange(varClass.Range);
         }
