@@ -215,8 +215,8 @@ class Console : Any
 
                 long count;
                 count = kb;
-                DataRange range;
-                range = new DataRange();
+                RangeInt range;
+                range = new RangeInt();
                 range.Init();
                 range.Count = count;
 
