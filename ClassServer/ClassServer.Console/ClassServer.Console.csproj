@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
-        <OutputPath>../../../Class/Out</OutputPath>
+        <OutputPath>../../Out</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
