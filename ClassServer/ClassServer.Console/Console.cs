@@ -25,8 +25,8 @@ class Console : Any
 
         this.TextNewLine = this.TextInfra.TextCreateStringData(this.ClassInfra.NewLine, null);
 
-        IntCompare charCompare;
-        charCompare = new IntCompare();
+        CompareMid charCompare;
+        charCompare = new CompareMid();
         charCompare.Init();
         this.TextCompare = new TextCompare();
         this.TextCompare.CharCompare = charCompare;
