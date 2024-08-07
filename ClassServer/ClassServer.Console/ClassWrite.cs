@@ -326,9 +326,6 @@ class ClassWrite : Any
         start = range.Start;
         end = range.End;
 
-        Text line;
-        Range tokenRange;
-
         int index;
         int count;
         index = 0;
@@ -350,15 +347,8 @@ class ClassWrite : Any
                 int previous;
                 previous = start - 1;
 
-                ClassTokenToken lastToken;
-                lastToken = (ClassTokenToken)code.Token.GetAt(previous);
-
-                line = (Text)this.SourceText.GetAt(lastToken.Row);
-
-                tokenRange = lastToken.Range;
-
                 int tokenEnd;
-                tokenEnd = line.Range.Index + tokenRange.Index + tokenRange.Count;
+                tokenEnd = this.TokenTextEnd(previous);
 
                 index = tokenEnd;
                 count = 0;
@@ -366,9 +356,25 @@ class ClassWrite : Any
         }
         if (!ba)
         {
+            index = this.TokenTextStart(start);
 
+            bool bba;
+            bba = (start < end);
+            if (bba)
+            {
+                int k;
+                k = this.TokenTextEnd(end - 1);
+
+                count = k - index;
+            }
+            if (!bba)
+            {
+                count = 0;
+            }
         }
 
+        this.ExecuteIndex(index);
+        this.ExecuteCount(count);
         return true;
     }
 
