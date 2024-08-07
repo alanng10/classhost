@@ -214,30 +214,11 @@ class ClassWrite : Any
 
     protected virtual bool ExecuteRange(ClassInfraRange range)
     {
-        ClassTokenCode code;
-        code = this.TokenCode;
-
-        ClassTokenToken firstToken;
-        firstToken = (ClassTokenToken)code.Token.GetAt(range.Start);
-
-        Text line;
-        line = (Text)this.SourceText.GetAt(firstToken.Row);
-        
-        Range tokenRange;
-        tokenRange = firstToken.Range;
-        
         int index;
-        index = line.Range.Index + tokenRange.Index;
+        index = this.TokenTextStart(range.Start);
         
-        ClassTokenToken lastToken;
-        lastToken = (ClassTokenToken)code.Token.GetAt(range.End - 1);
-
-        line = (Text)this.SourceText.GetAt(lastToken.Row);
-
-        tokenRange = lastToken.Range;
-
         int end;
-        end = line.Range.Index + tokenRange.Index + tokenRange.Count;
+        end = this.TokenTextEnd(range.End - 1);
 
         int count;
         count = end - index;
@@ -245,6 +226,46 @@ class ClassWrite : Any
         this.ExecuteIndex(index);
         this.ExecuteCount(count);
         return true;
+    }
+
+    protected virtual int TokenTextStart(int index)
+    {
+        ClassTokenCode code;
+        code = this.TokenCode;
+
+        ClassTokenToken token;
+        token = (ClassTokenToken)code.Token.GetAt(index);
+
+        Text line;
+        line = (Text)this.SourceText.GetAt(token.Row);
+
+        Range tokenRange;
+        tokenRange = token.Range;
+
+        int k;
+        k = line.Range.Index + tokenRange.Index;
+
+        return k;
+    }
+
+    protected virtual int TokenTextEnd(int index)
+    {
+        ClassTokenCode code;
+        code = this.TokenCode;
+
+        ClassTokenToken token;
+        token = (ClassTokenToken)code.Token.GetAt(index);
+
+        Text line;
+        line = (Text)this.SourceText.GetAt(token.Row);
+
+        Range tokenRange;
+        tokenRange = token.Range;
+
+        int k;
+        k = line.Range.Index + tokenRange.Index + tokenRange.Count;
+        
+        return k;
     }
 
     protected virtual bool ExecuteOptionalString(string value)
@@ -261,6 +282,93 @@ class ClassWrite : Any
         {
             this.ExecuteString(value);
         }
+        return true;
+    }
+
+    protected virtual bool ExecuteErrorArray(Array array)
+    {
+        int count;
+        count = array.Count;
+
+        this.ExecuteCount(count);
+
+        int i;
+        i = 0;
+        while (i < count)
+        {
+            ClassError a;
+            a = (ClassError)array.GetAt(i);
+
+            this.ExecuteError(a);
+
+            i = i + 1;
+        }
+        return true;
+    }
+
+    protected virtual bool ExecuteError(ClassError error)
+    {
+        this.ExecuteString(error.Kind.Text);
+        this.ExecuteErrorRange(error.Range);
+        return true;
+    }
+
+    protected virtual bool ExecuteErrorRange(ClassInfraRange range)
+    {
+        ClassTokenCode code;
+        code = this.TokenCode;
+
+        int tokenCount;
+        tokenCount = code.Token.Count;
+
+        int start;
+        int end;
+        start = range.Start;
+        end = range.End;
+
+        Text line;
+        Range tokenRange;
+
+        int index;
+        int count;
+        index = 0;
+        count = 0;
+
+        bool ba;
+        ba = (start == tokenCount);
+        if (ba)
+        {
+            bool baa;
+            baa = (tokenCount == 0);
+            if (baa)
+            {
+                index = 0;
+                count = 0;
+            }
+            if (!baa)
+            {
+                int previous;
+                previous = start - 1;
+
+                ClassTokenToken lastToken;
+                lastToken = (ClassTokenToken)code.Token.GetAt(previous);
+
+                line = (Text)this.SourceText.GetAt(lastToken.Row);
+
+                tokenRange = lastToken.Range;
+
+                int tokenEnd;
+                tokenEnd = line.Range.Index + tokenRange.Index + tokenRange.Count;
+
+                index = tokenEnd;
+                count = 0;
+            }
+        }
+        if (!ba)
+        {
+
+        }
+
         return true;
     }
 
