@@ -327,10 +327,18 @@ class ClassWrite : Any
         start = range.Start;
         end = range.End;
 
-        int index;
-        int count;
-        index = 0;
-        count = 0;
+        int startRow;
+        int startCol;
+        int endRow;
+        int endCol;
+        startRow = 0;
+        startCol = 0;
+        endRow = 0;
+        endCol = 0;
+
+        ClassTokenToken token;
+
+        Range tokenRange;
 
         bool ba;
         ba = (start == tokenCount);
@@ -340,42 +348,57 @@ class ClassWrite : Any
             baa = (tokenCount == 0);
             if (baa)
             {
-                index = 0;
-                count = 0;
+                startRow = 0;
+                startCol = 0;
+                endRow = 0;
+                endCol = 0;
             }
             if (!baa)
             {
                 int previous;
                 previous = start - 1;
 
-                int tokenEnd;
-                tokenEnd = this.TokenTextEnd(previous);
+                token = (ClassTokenToken)code.Token.GetAt(previous);
 
-                index = tokenEnd;
-                count = 0;
+                tokenRange = token.Range;
+
+                startRow = token.Row;
+                startCol = tokenRange.Index + tokenRange.Count;
+                endRow = startRow;
+                endCol = startCol;
             }
         }
         if (!ba)
         {
-            index = this.TokenTextStart(start);
+            token = (ClassTokenToken)code.Token.GetAt(start);
+
+            tokenRange = token.Range;
+
+            startRow = token.Row;
+            startCol = tokenRange.Index;
 
             bool bba;
             bba = (start < end);
             if (bba)
             {
-                int k;
-                k = this.TokenTextEnd(end - 1);
+                token = (ClassTokenToken)code.Token.GetAt(end - 1);
 
-                count = k - index;
+                tokenRange = token.Range;
+
+                endRow = token.Row;
+                endCol = tokenRange.Index + tokenRange.Count;
             }
             if (!bba)
             {
-                count = 0;
+                endRow = startRow;
+                endCol = startCol;
             }
         }
 
-        this.ExecuteIndex(index);
-        this.ExecuteCount(count);
+        this.ExecuteIndex(startRow);
+        this.ExecuteIndex(startCol);
+        this.ExecuteIndex(endRow);
+        this.ExecuteIndex(endCol);
         return true;
     }
 
