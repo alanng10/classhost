@@ -17,6 +17,7 @@ class ClassWrite : Any
 
     public virtual Console Console { get; set; }
     public virtual ClassNodeClass NodeClass { get; set; }
+    public virtual Array Error { get; set; }
     public virtual ClassTokenCode TokenCode { get; set; }
     public virtual Array SourceText { get; set; }
     public virtual int Start { get; set; }

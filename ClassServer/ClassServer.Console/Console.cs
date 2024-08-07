@@ -275,6 +275,7 @@ class Console : Any
         write = this.ClassWrite;
 
         write.NodeClass = varClass;
+        write.Error = result.Error;
         write.TokenCode = code;
         write.SourceText = text;
 
