@@ -28,8 +28,13 @@ class Console : Any
         CompareMid charCompare;
         charCompare = new CompareMid();
         charCompare.Init();
+        CharForm charForm;
+        charForm = new CharForm();
+        charForm.Init();
         this.TextCompare = new TextCompare();
         this.TextCompare.CharCompare = charCompare;
+        this.TextCompare.LeftCharForm = charForm;
+        this.TextCompare.RightCharForm = charForm;
         this.TextCompare.Init();
         return true;
     }
@@ -237,7 +242,7 @@ class Console : Any
 
     public virtual Data ExecuteClass(string sourceString)
     {
-        // this.Log("Console.ExecueClass Start");
+        // this.Log("Console.ExecuteClass Start");
 
         Text textA;
         textA = this.TextInfra.TextCreateStringData(sourceString, null);
@@ -247,7 +252,11 @@ class Console : Any
 
         this.ClassSource.Text = text;
 
+        // this.Log("Console.ExecuteClass 1111");
+
         this.ClassConsole.ExecuteCreate();
+
+        // this.Log("Console.ExecuteClass 2222");
 
         ClassNodeResult result;
         result = this.ClassConsole.Result.Node;
@@ -279,7 +288,11 @@ class Console : Any
         write.TokenCode = code;
         write.SourceText = text;
 
+        // this.Log("Console.ExecuteClass 3333");
+        
         write.Execute();
+
+        // this.Log("Console.ExecuteClass 4444");
 
         Data data;
         data = write.Data;
@@ -288,6 +301,7 @@ class Console : Any
 
         write.SourceText = null;
         write.TokenCode = null;
+        write.Error = null;
         write.NodeClass = null;
 
         int k;

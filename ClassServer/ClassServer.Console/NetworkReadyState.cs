@@ -100,6 +100,8 @@ class NetworkReadyState : State
                 return true;
             }
 
+            // this.Console.Log("Read Data Count: " + dataCount);
+
             Data data;
             data = new Data();
             data.Count = dataCount;
@@ -110,16 +112,32 @@ class NetworkReadyState : State
 
             range.Count = dataCount;
 
+            // this.Console.Log("Read Before 1111");
+
             stream.Read(data, range);
+
+            // this.Console.Log("Read After 1111");
 
             string text;
             text = this.StringCreate.Data(data, null);
 
+            // this.Console.Log("Read Text: " + text);
+
+            // this.Console.Log("ExecuteClass Before");
+
             data = this.Console.ExecuteClass(text);
+
+            // this.Console.Log("ExecuteClass After");
+
+            // this.Console.Log("Write Data Count: " + data.Count);
 
             range.Count = data.Count;
 
+            // this.Console.Log("Write Before 1111");
+
             stream.Write(data, range);
+
+            // this.Console.Log("Write After 1111");
 
             this.DataCount = -1;
         }
