@@ -13,6 +13,7 @@ global using IntParse = Avalon.Text.IntParse;
 global using Text = Avalon.Text.Text;
 global using TextCompare = Avalon.Text.Compare;
 global using TextEncode = Avalon.Text.Encode;
+global using TextEncodeKind = Avalon.Text.EncodeKind;
 global using TextEncodeKindList = Avalon.Text.EncodeKindList;
 global using TextInfra = Avalon.Text.Infra;
 global using Thread = Avalon.Thread.Thread;

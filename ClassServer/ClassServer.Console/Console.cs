@@ -164,11 +164,14 @@ class Console : Any
 
     public virtual bool Log(string text)
     {
-        string aa;
-        aa = text + "\n";
+        TextEncodeKindList encodeKindList;
+        encodeKindList = this.TextEncodeKindList;
 
         StorageStatusList statusList;
         statusList = this.StorageStatusList;
+
+        string aa;
+        aa = text + "\n";
 
         bool oo;
         oo = false;
@@ -198,34 +201,37 @@ class Console : Any
             {
                 TextEncode encode;
                 encode = new TextEncode();
-                encode.Kind = this.TextEncodeKindList.Utf8;
                 encode.Init();
 
-                Text o;
-                o = this.TextInfra.TextCreateString(aa, null);
-                int kk;
-                kk = o.Range.Count;
-                long ka;
-                ka = encode.DataCountMax(kk);
+                TextEncodeKind innKind;
+                TextEncodeKind outKind;
+                innKind = encodeKindList.Utf16;
+                outKind = encodeKindList.Utf8;
 
                 Data data;
-                data = new Data();
-                data.Count = ka;
-                data.Init();
+                data = this.TextInfra.StringDataCreateString(aa);
+                
+                RangeInt dataRange;
+                dataRange = new RangeInt();
+                dataRange.Init();
+                dataRange.Count = data.Count;
 
-                long kb;
-                kb = encode.Data(data, 0, o);
+                long resultCount;
+                resultCount = encode.ExecuteCount(innKind, outKind, data, dataRange);
 
-                encode.Final();
+                Data result;
+                result = new Data();
+                result.Count = resultCount;
+                result.Init();
 
-                long count;
-                count = kb;
+                encode.ExecuteResult(result, 0, innKind, outKind, data, dataRange);
+
                 RangeInt range;
                 range = new RangeInt();
                 range.Init();
-                range.Count = count;
+                range.Count = resultCount;
 
-                a.Stream.Write(data, range);
+                a.Stream.Write(result, range);
 
                 if (a.Status == statusList.NoError)
                 {
