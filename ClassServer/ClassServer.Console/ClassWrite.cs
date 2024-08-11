@@ -406,15 +406,15 @@ class ClassWrite : Any
     {
         int a;
         a = 0;
-        if (count is ClassNodePrudateCount)
+        if (count is ClassNodePrusateCount)
         {
             a = 0;
         }
-        if (count is ClassNodeProbateCount)
+        if (count is ClassNodePrecateCount)
         {
             a = 1;
         }
-        if (count is ClassNodePrecateCount)
+        if (count is ClassNodeProbateCount)
         {
             a = 2;
         }
