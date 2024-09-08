@@ -214,15 +214,12 @@ class Console : ClassBase
         return oo;
     }
 
-    public virtual Data ExecuteClass(String sourceString)
+    public virtual Data ExecuteClass(Text sourceText)
     {
         // this.Log("Console.ExecuteClass Start");
 
-        Text textA;
-        textA = this.TextInfra.TextCreateStringData(sourceString, null);
-
         Array text;
-        text = this.TextLimit(this.TA(sourceString), this.TB(this.TextInfra.NewLine));
+        text = this.TextLimit(sourceText, this.TB(this.TextInfra.NewLine));
 
         this.ClassSource.Text = text;
 

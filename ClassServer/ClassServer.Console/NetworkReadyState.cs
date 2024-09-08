@@ -108,8 +108,8 @@ class NetworkReadyState : State
             data.Count = dataCount;
             data.Init();
 
-            RangeInt range;
-            range = this.RangeInt;
+            Range range;
+            range = this.Range;
 
             range.Count = dataCount;
 
@@ -119,8 +119,19 @@ class NetworkReadyState : State
 
             // this.Console.Log("Read After 1111");
 
-            string text;
-            text = this.StringCreate.Data(data, null);
+            Data textData;
+            textData = this.CreateTextData(data);
+
+            long textCount;
+            textCount = textData.Count / sizeof(uint);
+
+            Text text;
+            text = new Text();
+            text.Init();
+            text.Data = textData;
+            text.Range = new Range();
+            text.Range.Init();
+            text.Range.Count = textCount;
 
             // this.Console.Log("Read Text: " + text);
 
@@ -145,5 +156,43 @@ class NetworkReadyState : State
 
         // this.Console.Log("Network read End");
         return true;
+    }
+
+    protected virtual Data CreateTextData(Data data)
+    {
+        InfraInfra infraInfra;
+        infraInfra = this.InfraInfra;
+
+        long count;
+        count = data.Count / sizeof(ushort);
+
+        Data k;
+        k = new Data();
+        k.Count = count * sizeof(uint);
+        k.Init();
+
+        long i;
+        i = 0;
+        while (i < count)
+        {
+            long indexA;
+            long indexB;
+            indexA = i * sizeof(ushort);
+            indexB = i * sizeof(uint);
+
+            ushort kk;
+            kk = infraInfra.DataShortGet(data, indexA);
+
+            uint na;
+            na = kk;
+
+            infraInfra.DataCharSet(k, indexB, na);
+
+            i = i + 1;
+        }
+
+        Data a;
+        a = k;
+        return a;
     }
 }
