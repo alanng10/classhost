@@ -115,9 +115,9 @@ class ClassWrite : Any
         
         int kk;
         kk = 0;
-        int count;
+        long count;
         count = array.Count;
-        int i;
+        long i;
         i = 0;
         while (i < count)
         {
