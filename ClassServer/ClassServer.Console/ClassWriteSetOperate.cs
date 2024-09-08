@@ -2,7 +2,7 @@ namespace ClassServer.Console;
 
 class ClassWriteSetOperate : ClassWriteOperate
 {
-    public override bool ExecuteByte(int value)
+    public override bool ExecuteByte(long value)
     {
         ClassWrite write;
         write = this.Write;

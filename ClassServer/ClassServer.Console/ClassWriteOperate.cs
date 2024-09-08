@@ -4,7 +4,7 @@ class ClassWriteOperate : Any
 {
     public virtual ClassWrite Write { get; set; }
 
-    public virtual bool ExecuteByte(int value)
+    public virtual bool ExecuteByte(long value)
     {
         return false;
     }
