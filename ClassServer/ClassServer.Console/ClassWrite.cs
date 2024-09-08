@@ -171,7 +171,7 @@ class ClassWrite : Any
         }
         this.ExecuteOptionalString(name);
 
-        int count;
+        long count;
         count = this.CountData(varField.Count);
         this.ExecuteByte(count);
 
@@ -193,7 +193,7 @@ class ClassWrite : Any
         }
         this.ExecuteOptionalString(name);
 
-        int count;
+        long count;
         count = this.CountData(varMaide.Count);
         this.ExecuteByte(count);
 
@@ -355,7 +355,7 @@ class ClassWrite : Any
             }
             if (!baa)
             {
-                int previous;
+                long previous;
                 previous = start - 1;
 
                 token = (ClassTokenToken)code.Token.GetAt(previous);
@@ -395,16 +395,16 @@ class ClassWrite : Any
             }
         }
 
-        this.ExecuteIndex(startRow);
-        this.ExecuteIndex(startCol);
-        this.ExecuteIndex(endRow);
-        this.ExecuteIndex(endCol);
+        this.ExecuteIndex((int)startRow);
+        this.ExecuteIndex((int)startCol);
+        this.ExecuteIndex((int)endRow);
+        this.ExecuteIndex((int)endCol);
         return true;
     }
 
-    protected virtual int CountData(ClassNodeCount count)
+    protected virtual long CountData(ClassNodeCount count)
     {
-        int a;
+        long a;
         a = 0;
         if (count is ClassNodePrusateCount)
         {
