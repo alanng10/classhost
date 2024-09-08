@@ -6,13 +6,13 @@ class NetworkReadyState : State
     {
         base.Init();
         this.InfraInfra = InfraInfra.This;
+        this.TextInfra = TextInfra.This;
         this.ConsoleConsole = ConsoleConsole.This;
 
-        this.StringCreate = new StringCreate();
-        this.StringCreate.Init();
+        this.StringComp = StringComp.This;
 
-        this.RangeInt = new RangeInt();
-        this.RangeInt.Init();
+        this.Range = new Range();
+        this.Range.Init();
 
         this.DataCount = -1;
 
@@ -20,7 +20,7 @@ class NetworkReadyState : State
         this.CountData.Count = sizeof(int);
         this.CountData.Init();
 
-        this.CountRange = new RangeInt();
+        this.CountRange = new Range();
         this.CountRange.Init();
         this.CountRange.Count = this.CountData.Count;
         return true;
@@ -28,13 +28,14 @@ class NetworkReadyState : State
 
     public virtual Console Console { get; set; }
     protected virtual InfraInfra InfraInfra { get; set; }
+    protected virtual TextInfra TextInfra { get; set; }
     protected virtual ConsoleConsole ConsoleConsole { get; set; }
-    protected virtual StringCreate StringCreate { get; set; }
-    protected virtual RangeInt RangeInt { get; set; }
+    protected virtual StringComp StringComp { get; set; }
+    protected virtual Range Range { get; set; }
 
     private int DataCount { get; set; }
     private Data CountData { get; set; }
-    private RangeInt CountRange { get; set; }
+    private Range CountRange { get; set; }
 
     public override bool Execute()
     {
@@ -78,7 +79,7 @@ class NetworkReadyState : State
             
             if (ke < 0)
             {
-                this.Console.Log("Network received data count invalid");
+                this.Console.Log(this.TextInfra.S("Network received data count invalid"));
                 return true;
             }
 
