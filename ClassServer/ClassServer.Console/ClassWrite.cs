@@ -215,17 +215,17 @@ class ClassWrite : Any
 
     protected virtual bool ExecuteRange(ClassInfraRange range)
     {
-        int index;
-        index = (int)this.TokenTextStart(range.Start);
+        long index;
+        index = this.TokenTextStart(range.Start);
         
-        int end;
-        end = (int)this.TokenTextEnd(range.End - 1);
+        long end;
+        end = this.TokenTextEnd(range.End - 1);
 
-        int count;
+        long count;
         count = end - index;
 
-        this.ExecuteIndex(index);
-        this.ExecuteCount(count);
+        this.ExecuteIndex((int)index);
+        this.ExecuteCount((int)count);
         return true;
     }
 
