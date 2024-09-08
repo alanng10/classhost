@@ -131,7 +131,10 @@ class Console : ClassBase
             String k;
             k = this.StringInt(o);
 
-            this.Log("Console Exit Status: " + k);
+            String kk;
+            kk = this.AddClear().AddS("Console Exit Status: ").Add(k).AddResult();
+
+            this.Log(kk);
         }
         
         this.Status = o;
@@ -211,7 +214,7 @@ class Console : ClassBase
         return oo;
     }
 
-    public virtual Data ExecuteClass(string sourceString)
+    public virtual Data ExecuteClass(String sourceString)
     {
         // this.Log("Console.ExecuteClass Start");
 
@@ -219,7 +222,7 @@ class Console : ClassBase
         textA = this.TextInfra.TextCreateStringData(sourceString, null);
 
         Array text;
-        text = this.TextInfra.TextArraySplit(textA, this.TextNewLine, this.TextCompare);
+        text = this.TextLimit(this.TA(sourceString), this.TB(this.TextInfra.NewLine));
 
         this.ClassSource.Text = text;
 
