@@ -163,7 +163,7 @@ class ClassWrite : Any
 
         this.ExecuteClassName(varField.Class);
 
-        string name;
+        String name;
         name = null;
         if (!(varField.Name == null))
         {
@@ -185,7 +185,7 @@ class ClassWrite : Any
         
         this.ExecuteClassName(varMaide.Class);
 
-        string name;
+        String name;
         name = null;
         if (!(varMaide.Name == null))
         {
@@ -269,7 +269,7 @@ class ClassWrite : Any
         return k;
     }
 
-    protected virtual bool ExecuteOptionalString(string value)
+    protected virtual bool ExecuteOptionalString(String value)
     {
         bool b;
         b = (value == null);
@@ -414,7 +414,7 @@ class ClassWrite : Any
         {
             a = 1;
         }
-        if (count is ClassNodeProbateCount)
+        if (count is ClassNodePronateCount)
         {
             a = 2;
         }
@@ -436,10 +436,13 @@ class ClassWrite : Any
         return aa;
     }
 
-    protected virtual bool ExecuteString(string value)
+    protected virtual bool ExecuteString(String value)
     {
+        Console console;
+        console = this.Console;
+ 
         int count;
-        count = value.Length;
+        count = (int)console.StringCount(value);
 
         this.ExecuteCount(count);
 
@@ -447,8 +450,8 @@ class ClassWrite : Any
         i = 0;
         while (i < count)
         {
-            char oc;
-            oc = value[i];
+            long oc;
+            oc = console.StringChar(value, i);
 
             byte ob;
             ob = (byte)oc;
