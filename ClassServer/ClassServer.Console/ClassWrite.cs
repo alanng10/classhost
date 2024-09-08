@@ -485,21 +485,21 @@ class ClassWrite : Any
         return this.ExecuteInt(sizeof(uint), a);
     }
 
-    protected virtual bool ExecuteInt(int count, ulong value)
+    protected virtual bool ExecuteInt(long count, ulong value)
     {
-        int i;
+        long i;
         i = 0;
         while (i < count)
         {
             int shift;
-            shift = i * 8;
+            shift = (int)(i * 8);
 
             ulong k;
             k = value >> shift;
             k = k & 0xff;
 
-            int oo;
-            oo = (int)k;
+            long oo;
+            oo = (long)k;
 
             this.ExecuteByte(oo);
 
