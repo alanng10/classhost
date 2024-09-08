@@ -76,7 +76,7 @@ class ClassWrite : Any
         bool b;
         b = (varClass == null);
         
-        int aa;
+        long aa;
         aa = this.OptionalData(b);
 
         this.ExecuteByte(aa);
@@ -203,7 +203,7 @@ class ClassWrite : Any
 
     protected virtual bool ExecuteClassName(ClassNodeClassName a)
     {
-        string varClass;
+        String varClass;
         varClass = null;
         if (!(a == null))
         {
@@ -216,10 +216,10 @@ class ClassWrite : Any
     protected virtual bool ExecuteRange(ClassInfraRange range)
     {
         int index;
-        index = this.TokenTextStart(range.Start);
+        index = (int)this.TokenTextStart(range.Start);
         
         int end;
-        end = this.TokenTextEnd(range.End - 1);
+        end = (int)this.TokenTextEnd(range.End - 1);
 
         int count;
         count = end - index;
@@ -229,7 +229,7 @@ class ClassWrite : Any
         return true;
     }
 
-    protected virtual int TokenTextStart(int index)
+    protected virtual long TokenTextStart(long index)
     {
         ClassTokenCode code;
         code = this.TokenCode;
@@ -243,13 +243,13 @@ class ClassWrite : Any
         Range tokenRange;
         tokenRange = token.Range;
 
-        int k;
+        long k;
         k = line.Range.Index + tokenRange.Index;
 
         return k;
     }
 
-    protected virtual int TokenTextEnd(int index)
+    protected virtual long TokenTextEnd(long index)
     {
         ClassTokenCode code;
         code = this.TokenCode;
@@ -263,7 +263,7 @@ class ClassWrite : Any
         Range tokenRange;
         tokenRange = token.Range;
 
-        int k;
+        long k;
         k = line.Range.Index + tokenRange.Index + tokenRange.Count;
         
         return k;
@@ -274,7 +274,7 @@ class ClassWrite : Any
         bool b;
         b = (value == null);
         
-        int aa;
+        long aa;
         aa = this.OptionalData(b);
 
         this.ExecuteByte(aa);
@@ -289,7 +289,7 @@ class ClassWrite : Any
     protected virtual bool ExecuteErrorArray(Array array)
     {
         int count;
-        count = array.Count;
+        count = (int)array.Count;
 
         this.ExecuteCount(count);
 
@@ -319,18 +319,18 @@ class ClassWrite : Any
         ClassTokenCode code;
         code = this.TokenCode;
 
-        int tokenCount;
+        long tokenCount;
         tokenCount = code.Token.Count;
 
-        int start;
-        int end;
+        long start;
+        long end;
         start = range.Start;
         end = range.End;
 
-        int startRow;
-        int startCol;
-        int endRow;
-        int endCol;
+        long startRow;
+        long startCol;
+        long endRow;
+        long endCol;
         startRow = 0;
         startCol = 0;
         endRow = 0;
@@ -425,9 +425,9 @@ class ClassWrite : Any
         return a;
     }
 
-    protected virtual int OptionalData(bool b)
+    protected virtual long OptionalData(bool b)
     {
-        int aa;
+        long aa;
         aa = 0;
         if (!b)
         {
@@ -508,7 +508,7 @@ class ClassWrite : Any
         return true;
     }
 
-    protected virtual bool ExecuteByte(int value)
+    protected virtual bool ExecuteByte(long value)
     {
         this.Operate.ExecuteByte(value);
         return true;
