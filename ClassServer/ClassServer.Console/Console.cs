@@ -308,10 +308,10 @@ class Console : ClassBase
 
         // this.Log("Out Data End");
 
-        uint u;
-        u = (uint)k;
+        long n;
+        n = k;
 
-        this.InfraInfra.DataMidSet(data, 0, u);
+        this.InfraInfra.DataMidSet(data, 0, n);
 
         // this.Log("Console.ExecueClass End");
         return data;
