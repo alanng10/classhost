@@ -35,6 +35,7 @@ global using EntryEntry = Avalon.Entry.Entry;
 global using ClassSource = Class.Infra.Source;
 global using ClassInfraRange = Class.Infra.Range;
 global using ClassError = Class.Infra.Error;
+global using ClassBase = Class.Infra.Base;
 global using ClassInfra = Class.Infra.Infra;
 global using ClassTokenCode = Class.Token.Code;
 global using ClassTokenToken = Class.Token.Token;

@@ -1,17 +1,13 @@
 namespace ClassServer.Console;
 
-class Console : Any
+class Console : ClassBase
 {
     public override bool Init()
     {
         base.Init();
-        this.InfraInfra = InfraInfra.This;
-        this.ListInfra = ListInfra.This;
-        this.TextInfra = TextInfra.This;
         this.StorageInfra = StorageInfra.This;
-        this.TextEncodeKindList = TextEncodeKindList.This;
+        this.TextCodeKindList = TextCodeKindList.This;
         this.StorageStatusList = StorageStatusList.This;
-        this.ClassInfra = ClassInfra.This;
         this.ConsoleConsole = ConsoleConsole.This;
         this.ClassTaskKindList = ClassTaskKindList.This;
 
@@ -22,20 +18,6 @@ class Console : Any
         this.ClassWrite.Console = this;
         this.ClassWrite.Init();
         this.ClassWrite.Start = sizeof(int);
-
-        this.TextNewLine = this.TextInfra.TextCreateStringData(this.ClassInfra.NewLine, null);
-
-        CompareMid charCompare;
-        charCompare = new CompareMid();
-        charCompare.Init();
-        CharForm charForm;
-        charForm = new CharForm();
-        charForm.Init();
-        this.TextCompare = new TextCompare();
-        this.TextCompare.CharCompare = charCompare;
-        this.TextCompare.LeftCharForm = charForm;
-        this.TextCompare.RightCharForm = charForm;
-        this.TextCompare.Init();
         return true;
     }
 
@@ -46,20 +28,14 @@ class Console : Any
     public virtual Network Network { get; set; }
     public virtual Thread Thread { get; set; }
     public virtual TimeEvent Interval { get; set; }
-    protected virtual InfraInfra InfraInfra { get; set; }
-    protected virtual ListInfra ListInfra { get; set; }
-    protected virtual TextInfra TextInfra { get; set; }
     protected virtual StorageInfra StorageInfra { get; set; }
-    protected virtual TextEncodeKindList TextEncodeKindList { get; set; }
+    protected virtual TextCodeKindList TextCodeKindList { get; set; }
     protected virtual StorageStatusList StorageStatusList { get; set; }
-    protected virtual ClassInfra ClassInfra { get; set; }
     protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual ClassTaskKindList ClassTaskKindList { get; set; }
     protected virtual ClassConsole ClassConsole { get; set; }
     protected virtual ClassSource ClassSource { get; set; }
     protected virtual ClassWrite ClassWrite { get; set; }
-    protected virtual Text TextNewLine { get; set; }
-    protected virtual TextCompare TextCompare { get; set; }
 
     public virtual bool Execute()
     {
@@ -69,7 +45,7 @@ class Console : Any
         task = new ClassTask();
         task.Init();
         task.Kind = this.ClassTaskKindList.Node;
-        task.Node = "Class";
+        task.Node = this.S("Class");
 
         this.ClassConsole.Task = task;
 
@@ -77,7 +53,7 @@ class Console : Any
         source = new ClassSource();
         source.Init();
         source.Index = 0;
-        source.Name = "Code";
+        source.Name = this.S("Code");
 
         this.ClassSource = source;
 
@@ -143,7 +119,7 @@ class Console : Any
 
         // this.Log("ClassServer.Console:Console.Execute EventLoop Start");
 
-        int o;
+        long o;
         o = thread.ExecuteEventLoop();
 
         // this.Log("ClassServer.Console:Console.Execute EventLoop End");
@@ -152,8 +128,8 @@ class Console : Any
 
         if (!(o == 0))
         {
-            string k;
-            k = o.ToString();
+            String k;
+            k = this.StringInt(o);
 
             this.Log("Console Exit Status: " + k);
         }
@@ -162,16 +138,16 @@ class Console : Any
         return true;
     }
 
-    public virtual bool Log(string text)
+    public virtual bool Log(String text)
     {
-        TextEncodeKindList encodeKindList;
-        encodeKindList = this.TextEncodeKindList;
+        TextCodeKindList codeKindList;
+        codeKindList = this.TextCodeKindList;
 
         StorageStatusList statusList;
         statusList = this.StorageStatusList;
 
-        string aa;
-        aa = text + "\n";
+        String aa;
+        aa = this.AddClear().Add(text).AddLine().AddResult();
 
         bool oo;
         oo = false;
@@ -186,7 +162,7 @@ class Console : Any
         Storage a;
         a = new Storage();
         a.Init();
-        a.Path = "ClassServer.Console.data/log.txt";
+        a.Path = this.S("ClassServer.Console.data/log.txt");
         a.Mode = mode;
         a.Open();
 
@@ -199,37 +175,26 @@ class Console : Any
 
             if (a.Status == statusList.NoError)
             {
-                TextEncode encode;
-                encode = new TextEncode();
-                encode.Init();
-
-                TextEncodeKind innKind;
-                TextEncodeKind outKind;
-                innKind = encodeKindList.Utf16;
-                outKind = encodeKindList.Utf8;
+                TextCodeKind innKind;
+                TextCodeKind outKind;
+                innKind = codeKindList.Utf32;
+                outKind = codeKindList.Utf8;
 
                 Data data;
                 data = this.TextInfra.StringDataCreateString(aa);
                 
-                RangeInt dataRange;
-                dataRange = new RangeInt();
+                Range dataRange;
+                dataRange = new Range();
                 dataRange.Init();
                 dataRange.Count = data.Count;
 
-                long resultCount;
-                resultCount = encode.ExecuteCount(innKind, outKind, data, dataRange);
-
                 Data result;
-                result = new Data();
-                result.Count = resultCount;
-                result.Init();
+                result = this.TextInfra.Code(innKind, outKind, data, dataRange);                
 
-                encode.ExecuteResult(result, 0, innKind, outKind, data, dataRange);
-
-                RangeInt range;
-                range = new RangeInt();
+                Range range;
+                range = new Range();
                 range.Init();
-                range.Count = resultCount;
+                range.Count = result.Count;
 
                 a.Stream.Write(result, range);
 
