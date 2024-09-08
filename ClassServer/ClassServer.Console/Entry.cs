@@ -2,7 +2,7 @@ namespace ClassServer.Console;
 
 public class Entry : EntryEntry
 {
-    protected override int ExecuteMain()
+    protected override long ExecuteMain()
     {
         TextInfra textInfra;
         textInfra = TextInfra.This;
@@ -15,29 +15,29 @@ public class Entry : EntryEntry
             return 310;
         }
 
-        string hostName;
-        hostName = (string)arg.GetAt(0);
+        String hostName;
+        hostName = (String)arg.GetAt(0);
 
         IntParse parse;
         parse = new IntParse();
         parse.Init();
 
-        string ka;
-        ka = (string)arg.GetAt(1);
+        String ka;
+        ka = (String)arg.GetAt(1);
 
         Text k;
         k = textInfra.TextCreateStringData(ka, null);
 
         long nn;
-        nn = parse.Execute(k, 10, false);
+        nn = parse.Execute(k, 10, false, null);
 
         if (nn == -1)
         {
             return 311;
         }
 
-        int hostPort;
-        hostPort = (int)nn;
+        long hostPort;
+        hostPort = nn;
 
         Console a;
         a = new Console();
@@ -47,7 +47,7 @@ public class Entry : EntryEntry
         a.HostPort = hostPort;
         a.Execute();
 
-        int o;
+        long o;
         o = a.Status + 400;
         return o;
     }

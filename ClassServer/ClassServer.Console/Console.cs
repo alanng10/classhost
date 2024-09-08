@@ -39,9 +39,9 @@ class Console : Any
         return true;
     }
 
-    public virtual string HostName { get; set; }
-    public virtual int HostPort { get; set; }
-    public virtual int Status { get; set; }
+    public virtual String HostName { get; set; }
+    public virtual long HostPort { get; set; }
+    public virtual long Status { get; set; }
 
     public virtual Network Network { get; set; }
     public virtual Thread Thread { get; set; }
