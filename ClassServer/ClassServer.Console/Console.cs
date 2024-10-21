@@ -65,6 +65,7 @@ class Console : ClassBase
 
         Network network;
         network = new Network();
+        network.Console = this;
         network.Init();
 
         this.Network = network;
