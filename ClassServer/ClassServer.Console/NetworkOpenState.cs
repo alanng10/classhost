@@ -9,6 +9,8 @@ class NetworkOpenState : State
         Console aa;
         aa = this.Console;
 
+        aa.Interval.Stop();
+
         Network network;
         network = aa.Network;
 

@@ -72,13 +72,6 @@ class Console : ClassBase
         network.HostName = this.HostName;
         network.HostPort = this.HostPort;
 
-        NetworkReadyState readyState;
-        readyState = new NetworkReadyState();
-        readyState.Console = this;
-        readyState.Init();
-
-        network.ReadyReadState = readyState;
-
         NetworkOpenState openState;
         openState = new NetworkOpenState();
         openState.Console = this;
@@ -90,7 +83,6 @@ class Console : ClassBase
 
         this.Interval = interval;
 
-        interval.Single = true;
         interval.Time = 0;
         interval.Elapse.State.AddState(openState);
 
