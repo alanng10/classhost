@@ -1,18 +1,10 @@
 namespace ClassServer.Console;
 
-class NetworkStatusState : State
+class Network : NetworkNetwork
 {
-    public override bool Init()
-    {
-        base.Init();
-        this.NetworkStatusList = NetworkStatusList.This;
-        return true;
-    }
-
     public virtual Console Console { get; set; }
-    protected virtual NetworkStatusList NetworkStatusList { get; set; }
-
-    public override bool Execute()
+    
+    public override bool StatusEvent()
     {
         NetworkStatusList statusList;
         statusList = this.NetworkStatusList;
@@ -20,15 +12,12 @@ class NetworkStatusState : State
         Console console;
         console = this.Console;
 
-        Network network;
-        network = console.Network;
-
         NetworkStatus status;
-        status = network.Status;
+        status = this.Status;
 
         if (!(status == statusList.NoError))
         {
-            network.Close();
+            this.Close();
             console.Thread.Exit(100 + status.Index);
         }
         return true;

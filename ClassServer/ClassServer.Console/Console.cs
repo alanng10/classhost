@@ -63,8 +63,8 @@ class Console : ClassBase
         
         this.ClassConsole.Source = array;
 
-        Network network;
-        network = new Network();
+        NetworkNetwork network;
+        network = new NetworkNetwork();
         network.Init();
 
         this.Network = network;
