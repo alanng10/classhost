@@ -72,10 +72,6 @@ class Console : ClassBase
         network.HostName = this.HostName;
         network.HostPort = this.HostPort;
 
-        NetworkStatusState statusState;
-        statusState = new NetworkStatusState();
-        statusState.Console = this;
-        statusState.Init();
 
         NetworkCaseState caseState;
         caseState = new NetworkCaseState();
@@ -87,7 +83,6 @@ class Console : ClassBase
         readyState.Console = this;
         readyState.Init();
 
-        network.StatusChangeState = statusState;
         network.CaseChangeState = caseState;
         network.ReadyReadState = readyState;
 
@@ -120,7 +115,7 @@ class Console : ClassBase
         // this.Log("ClassServer.Console:Console.Execute EventLoop Start");
 
         long o;
-        o = thread.ExecuteEventLoop();
+        o = thread.ExecuteMain();
 
         // this.Log("ClassServer.Console:Console.Execute EventLoop End");
 
