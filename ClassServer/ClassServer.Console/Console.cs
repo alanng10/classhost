@@ -63,8 +63,8 @@ class Console : ClassBase
         
         this.ClassConsole.Source = array;
 
-        NetworkNetwork network;
-        network = new NetworkNetwork();
+        Network network;
+        network = new Network();
         network.Init();
 
         this.Network = network;
@@ -72,18 +72,11 @@ class Console : ClassBase
         network.HostName = this.HostName;
         network.HostPort = this.HostPort;
 
-
-        NetworkCaseState caseState;
-        caseState = new NetworkCaseState();
-        caseState.Console = this;
-        caseState.Init();
-
         NetworkReadyState readyState;
         readyState = new NetworkReadyState();
         readyState.Console = this;
         readyState.Init();
 
-        network.CaseChangeState = caseState;
         network.ReadyReadState = readyState;
 
         NetworkOpenState openState;

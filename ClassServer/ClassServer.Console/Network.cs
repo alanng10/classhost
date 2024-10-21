@@ -22,4 +22,25 @@ class Network : NetworkNetwork
         }
         return true;
     }
+
+    public override bool CaseEvent()
+    {
+        NetworkCaseList caseList;
+        caseList = this.NetworkCaseList;
+
+        NetworkCase cc;
+        cc = this.Case;
+
+        if (cc == caseList.Connected)
+        {
+            // this.Console.Log("ClassServer.Console:NetworkCaseState.Execute Connected");
+        }
+
+        if (cc == caseList.Unconnected)
+        {
+            // this.Console.Log("ClassServer.Console:NetworkCaseState.Execute Unconnected");
+        }
+
+        return true;
+    }
 }
