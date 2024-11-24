@@ -72,11 +72,6 @@ class Console : ClassBase
         network.HostName = this.HostName;
         network.HostPort = this.HostPort;
 
-        NetworkOpenState openState;
-        openState = new NetworkOpenState();
-        openState.Console = this;
-        openState.Init();
-
         ThreadThis current;
         current = new ThreadThis();
         current.Init();
