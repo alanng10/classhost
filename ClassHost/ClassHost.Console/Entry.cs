@@ -29,7 +29,7 @@ public class Entry : EntryEntry
         k = textInfra.TextCreateStringData(ka, null);
 
         long nn;
-        nn = parse.Execute(k, 10, false, null);
+        nn = parse.Execute(k, 10, null);
 
         if (nn == -1)
         {
