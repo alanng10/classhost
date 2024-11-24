@@ -1,9 +1,9 @@
 @echo off
 
 set HostName=%~1
-set ServerPort=%~2
+set HostPort=%~2
 
 pushd Out\net8.0
-ClassServer.Console-ExeCon "%HostName%" "%ServerPort%"
+ClassHost.Console-ExeCon "%HostName%" "%HostPort%"
 echo Status: %errorlevel%
 popd

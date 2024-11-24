@@ -1,5 +1,5 @@
 @echo off
 
-call Script\ClassServer\CleanModule
+call Script\ClassHost\CleanModule
 echo:
-call Script\ClassServer\MakeModule
+call Script\ClassHost\MakeModule
