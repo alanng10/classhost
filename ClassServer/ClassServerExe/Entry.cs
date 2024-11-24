@@ -7,8 +7,8 @@ class Entry
     {
         EntryEntry entry;
         entry = new ModuleEntry();
-        entry.ArgSet(arg);
         entry.Init();
+        entry.ArgSet(arg);
         int o;
         o = entry.Execute();
         return o;

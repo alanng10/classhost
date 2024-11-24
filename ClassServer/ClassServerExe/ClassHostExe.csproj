@@ -4,12 +4,12 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <OutputPath>../../Out</OutputPath>
-        <AssemblyName>ClassServer.Console-ExeCon</AssemblyName>
+        <AssemblyName>ClassHost.Console-ExeCon</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
         <ProjectReference Include="../../../Class/Avalon/Avalon.Entry/Avalon.Entry.csproj" />
-        <ProjectReference Include="../ClassServer.Console/ClassServer.Console.csproj" />
+        <ProjectReference Include="../ClassHost.Console/ClassHost.Console.csproj" />
     </ItemGroup>
 
 </Project>
