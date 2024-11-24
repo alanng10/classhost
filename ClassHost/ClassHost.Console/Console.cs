@@ -27,7 +27,6 @@ class Console : ClassBase
 
     public virtual Network Network { get; set; }
     public virtual Thread Thread { get; set; }
-    public virtual TimeEvent Interval { get; set; }
     protected virtual StorageInfra StorageInfra { get; set; }
     protected virtual TextCodeKindList TextCodeKindList { get; set; }
     protected virtual StorageStatusList StorageStatusList { get; set; }
@@ -78,17 +77,6 @@ class Console : ClassBase
         openState.Console = this;
         openState.Init();
 
-        TimeEvent interval;
-        interval = new TimeEvent();
-        interval.Init();
-
-        this.Interval = interval;
-
-        interval.Time = 0;
-        interval.Elapse.State.AddState(openState);
-
-        interval.Start();
-
         ThreadThis current;
         current = new ThreadThis();
         current.Init();
@@ -99,6 +87,8 @@ class Console : ClassBase
         this.Thread = thread;
 
         // this.Log("ClassServer.Console:Console.Execute EventLoop Start");
+
+        network.Open();
 
         long o;
         o = thread.ExecuteMain();
