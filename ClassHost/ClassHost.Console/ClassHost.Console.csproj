@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="../../../Class/Avalon/Avalon.Network/Avalon.Network.csproj" />
         <ProjectReference Include="../../../Class/Saber/Saber.Console/Saber.Console.csproj" />
     </ItemGroup>
 
