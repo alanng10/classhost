@@ -44,7 +44,7 @@ class Network : NetworkNetwork
     protected virtual Range Range { get; set; }
 
     private long ProtoCase { get; set; }
-    private int Count { get; set; }
+    private long Count { get; set; }
     private Data CaseData { get; set; }
     private Range CaseRange { get; set; }
     private Data CountData { get; set; }
