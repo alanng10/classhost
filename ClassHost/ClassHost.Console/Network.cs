@@ -200,11 +200,17 @@ class Network : NetworkNetwork
 
             this.Stream.Read(data, range);
 
-            
+            Array pathArray;
+            pathArray = this.PathArrayGet(data);
         }
 
         // this.Console.Log("Network read End");
         return true;
+    }
+
+    protected virtual Array PathArrayGet(Data data)
+    {
+        return null;
     }
 
     protected virtual long CountGet(long dataCount, long nextCase)
