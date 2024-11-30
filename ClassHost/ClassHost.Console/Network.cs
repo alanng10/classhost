@@ -14,7 +14,7 @@ class Network : NetworkNetwork
         this.Range = new Range();
         this.Range.Init();
 
-        this.SourceDataCount = -1;
+        this.Count = -1;
 
         this.ProtoCase = -1;
 
@@ -44,7 +44,7 @@ class Network : NetworkNetwork
     protected virtual Range Range { get; set; }
 
     private long ProtoCase { get; set; }
-    private int SourceDataCount { get; set; }
+    private int Count { get; set; }
     private Data CaseData { get; set; }
     private Range CaseRange { get; set; }
     private Data CountData { get; set; }
@@ -97,14 +97,11 @@ class Network : NetworkNetwork
         Console console;
         console = this.Console;
 
-        Network network;
-        network = console.Network;
-
         Stream stream;
-        stream = network.Stream;
+        stream = this.Stream;
 
         long ka;
-        ka = network.ReadyCount;
+        ka = this.ReadyCount;
 
         if (this.ProtoCase == -1)
         {
@@ -122,40 +119,12 @@ class Network : NetworkNetwork
 
         if (this.ProtoCase == 0)
         {
-            int kk;
-            kk = sizeof(int);
-
-            if (ka < kk)
-            {
-                return true;
-            }
-
-            stream.Read(this.CountData, this.CountRange);
-
-            uint u;
-            u = this.InfraInfra.DataMidGet(this.CountData, 0);
-
-            int ke;
-            ke = (int)u;
-
-            if (ke < 0)
-            {
-                this.Console.Log(this.TextInfra.S("Network received data count invalid"));
-                return true;
-            }
-
-            // this.Console.Log("Network received data count: " + ke.ToString());
-
-            this.SourceDataCount = ke;
-
-            ka = ka - kk;
-
-            this.ProtoCase = 1;
+            ka = this.CountGet(ka, 1);
         }
 
         if (this.ProtoCase == 1)
         {
-            if (ka < this.SourceDataCount)
+            if (ka < this.Count)
             {
                 return true;
             }
@@ -164,13 +133,13 @@ class Network : NetworkNetwork
 
             Data data;
             data = new Data();
-            data.Count = this.SourceDataCount;
+            data.Count = this.Count;
             data.Init();
 
             Range range;
             range = this.Range;
 
-            range.Count = this.SourceDataCount;
+            range.Count = this.Count;
 
             // this.Console.Log("Read Before 1111");
 
@@ -210,13 +179,52 @@ class Network : NetworkNetwork
 
             // this.Console.Log("Write After 1111");
 
-            this.SourceDataCount = -1;
+            this.Count = -1;
 
             this.ProtoCase = -1;
         }
 
+        if (this.ProtoCase == 10)
+        {
+
+        }
+
         // this.Console.Log("Network read End");
         return true;
+    }
+
+    protected virtual long CountGet(long dataCount, long nextCase)
+    {
+        int kk;
+        kk = sizeof(int);
+
+        if (dataCount < kk)
+        {
+            return dataCount;
+        }
+
+        this.Stream.Read(this.CountData, this.CountRange);
+
+        uint u;
+        u = this.InfraInfra.DataMidGet(this.CountData, 0);
+
+        int ke;
+        ke = (int)u;
+
+        if (ke < 0)
+        {
+            this.Console.Log(this.TextInfra.S("Network received data count invalid"));
+        }
+
+        // this.Console.Log("Network received data count: " + ke.ToString());
+
+        this.Count = ke;
+
+        dataCount = dataCount - kk;
+
+        this.ProtoCase = nextCase;
+
+        return dataCount;
     }
 
     protected virtual Data CreateTextData(Data data)
