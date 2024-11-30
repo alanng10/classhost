@@ -19,6 +19,8 @@ class Network : NetworkNetwork
 
         this.ProtoCase = -1;
 
+        this.Index = -1;
+
         this.CaseData = new Data();
         this.CaseData.Count = 1;
         this.CaseData.Init();
@@ -212,6 +214,11 @@ class Network : NetworkNetwork
 
             Array pathArray;
             pathArray = this.ReadStringArray();
+
+            this.Data = null;
+            this.Index = -1;
+
+            this.ProtoCase = -1;
         }
 
         // this.Console.Log("Network read End");
