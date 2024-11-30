@@ -6,6 +6,7 @@ class Network : NetworkNetwork
     {
         base.Init();
         this.InfraInfra = InfraInfra.This;
+        this.ListInfra = ListInfra.This;
         this.TextInfra = TextInfra.This;
         this.ConsoleConsole = ConsoleConsole.This;
 
@@ -38,6 +39,7 @@ class Network : NetworkNetwork
 
     public virtual Console Console { get; set; }
     protected virtual InfraInfra InfraInfra { get; set; }
+    protected virtual ListInfra ListInfra { get; set; }
     protected virtual TextInfra TextInfra { get; set; }
     protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual StringComp StringComp { get; set; }
@@ -49,6 +51,8 @@ class Network : NetworkNetwork
     private Range CaseRange { get; set; }
     private Data CountData { get; set; }
     private Range CountRange { get; set; }
+    protected virtual Data Data { get; set; }
+    protected virtual long Index { get; set; }
     
     public override bool StatusEvent()
     {
@@ -144,8 +148,11 @@ class Network : NetworkNetwork
 
             // this.Console.Log("Read After 1111");
 
+            long charCount;
+            charCount = data.Count / sizeof(ushort);
+
             Data textData;
-            textData = this.CreateTextData(data);
+            textData = this.CreateTextData(data, 0, charCount);
 
             long textCount;
             textCount = textData.Count / sizeof(uint);
@@ -200,17 +207,98 @@ class Network : NetworkNetwork
 
             this.Stream.Read(data, range);
 
+            this.Data = data;
+            this.Index = 0;
+
             Array pathArray;
-            pathArray = this.PathArrayGet(data);
+            pathArray = this.ReadStringArray();
         }
 
         // this.Console.Log("Network read End");
         return true;
     }
 
-    protected virtual Array PathArrayGet(Data data)
+    protected virtual Array ReadStringArray()
     {
-        return null;
+        long count;
+        count = this.ReadCount();
+
+        if (count == -1)
+        {
+            return null;
+        }
+
+        Array array;
+        array = this.ListInfra.ArrayCreate(count);
+
+        long i;
+        i = 0;
+        while (i < count)
+        {
+            String a;
+            a = this.ReadString();
+
+            if (a == null)
+            {
+                return null;
+            }
+
+            array.SetAt(i, a);
+
+            i = i + 1;
+        }
+
+        return array;
+    }
+
+    protected virtual String ReadString()
+    {
+        long count;
+        count = this.ReadCount();
+
+        if (count == -1)
+        {
+            return null;
+        }
+
+        Data data;
+        data = this.CreateTextData(this.Data, this.Index, count);
+
+        String a;
+        a = this.StringComp.CreateData(data, null);
+
+        this.Index = this.Index + count * sizeof(ushort);
+
+        return a;
+    }
+
+    protected virtual long ReadCount()
+    {
+        return this.ReadInt();
+    }
+
+    protected virtual long ReadInt()
+    {
+        long ka;
+        ka = sizeof(uint);
+
+        if (!this.InfraInfra.ValidRange(this.Data.Count, this.Index, ka))
+        {
+            return -1;
+        }
+
+        uint k;
+        k = this.InfraInfra.DataMidGet(this.Data, this.Index);
+        
+        int kh;
+        kh = (int)k;
+
+        long a;
+        a = kh;
+
+        this.Index = this.Index + ka;
+
+        return a;
     }
 
     protected virtual long CountGet(long dataCount, long nextCase)
@@ -247,13 +335,13 @@ class Network : NetworkNetwork
         return dataCount;
     }
 
-    protected virtual Data CreateTextData(Data data)
+    protected virtual Data CreateTextData(Data data, long dataIndex, long charCount)
     {
         InfraInfra infraInfra;
         infraInfra = this.InfraInfra;
 
         long count;
-        count = data.Count / sizeof(ushort);
+        count = charCount;
 
         Data k;
         k = new Data();
@@ -266,7 +354,7 @@ class Network : NetworkNetwork
         {
             long indexA;
             long indexB;
-            indexA = i * sizeof(ushort);
+            indexA = dataIndex + i * sizeof(ushort);
             indexB = i * sizeof(uint);
 
             ushort kk;
