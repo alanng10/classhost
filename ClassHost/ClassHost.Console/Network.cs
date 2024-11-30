@@ -219,6 +219,19 @@ class Network : NetworkNetwork
             this.Index = -1;
 
             this.ProtoCase = -1;
+
+            bool ba;
+            ba = (pathArray == null);
+
+            if (ba)
+            {
+                ConsoleConsole.This.Err.Write(this.TextInfra.S("Class Fold Path Array is null\n"));
+            }
+
+            if (!ba)
+            {
+                this.Console.ExecuteClassFold(pathArray);
+            }
         }
 
         // this.Console.Log("Network read End");
