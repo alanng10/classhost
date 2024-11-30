@@ -14,7 +14,17 @@ class Network : NetworkNetwork
         this.Range = new Range();
         this.Range.Init();
 
-        this.DataCount = -1;
+        this.SourceDataCount = -1;
+
+        this.ProtoCase = -1;
+
+        this.CaseData = new Data();
+        this.CaseData.Count = 1;
+        this.CaseData.Init();
+
+        this.CaseRange = new Range();
+        this.CaseRange.Init();
+        this.CaseRange.Count = this.CaseData.Count;
 
         this.CountData = new Data();
         this.CountData.Count = sizeof(int);
@@ -33,7 +43,10 @@ class Network : NetworkNetwork
     protected virtual StringComp StringComp { get; set; }
     protected virtual Range Range { get; set; }
 
-    private int DataCount { get; set; }
+    private long ProtoCase { get; set; }
+    private int SourceDataCount { get; set; }
+    private Data CaseData { get; set; }
+    private Range CaseRange { get; set; }
     private Data CountData { get; set; }
     private Range CountRange { get; set; }
     
@@ -93,13 +106,21 @@ class Network : NetworkNetwork
         long ka;
         ka = network.ReadyCount;
 
-        int dataCount;
-        dataCount = this.DataCount;
+        if (this.ProtoCase == -1)
+        {
+            if (ka < 1)
+            {
+                return true;
+            }
 
-        bool b;
-        b = (dataCount == -1);
+            stream.Read(this.CaseData, this.CaseRange);
 
-        if (b)
+            ka = ka - this.CaseRange.Count;
+
+            this.ProtoCase = this.CaseData.Get(0);
+        }
+
+        if (this.ProtoCase == 0)
         {
             int kk;
             kk = sizeof(int);
@@ -125,18 +146,16 @@ class Network : NetworkNetwork
 
             // this.Console.Log("Network received data count: " + ke.ToString());
 
-            this.DataCount = ke;
-
-            dataCount = ke;
+            this.SourceDataCount = ke;
 
             ka = ka - kk;
 
-            b = false;
+            this.ProtoCase = 1;
         }
 
-        if (!b)
+        if (this.ProtoCase == 1)
         {
-            if (ka < dataCount)
+            if (ka < this.SourceDataCount)
             {
                 return true;
             }
@@ -145,13 +164,13 @@ class Network : NetworkNetwork
 
             Data data;
             data = new Data();
-            data.Count = dataCount;
+            data.Count = this.SourceDataCount;
             data.Init();
 
             Range range;
             range = this.Range;
 
-            range.Count = dataCount;
+            range.Count = this.SourceDataCount;
 
             // this.Console.Log("Read Before 1111");
 
@@ -191,7 +210,7 @@ class Network : NetworkNetwork
 
             // this.Console.Log("Write After 1111");
 
-            this.DataCount = -1;
+            this.SourceDataCount = -1;
         }
 
         // this.Console.Log("Network read End");
