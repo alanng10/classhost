@@ -213,7 +213,7 @@ class Network : NetworkNetwork
 
         if (ke < 0)
         {
-            this.Console.Log(this.TextInfra.S("Network received data count invalid"));
+            this.Console.Log(this.TextInfra.S("Network received count invalid"));
         }
 
         // this.Console.Log("Network received data count: " + ke.ToString());
