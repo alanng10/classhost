@@ -211,6 +211,8 @@ class Network : NetworkNetwork
             // this.Console.Log("Write After 1111");
 
             this.SourceDataCount = -1;
+
+            this.ProtoCase = -1;
         }
 
         // this.Console.Log("Network read End");
