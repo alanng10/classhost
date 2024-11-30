@@ -183,7 +183,25 @@ class Console : ClassBase
 
     public virtual bool ExecuteClassFold(Array pathArray)
     {
-        
+        long count;
+        count = pathArray.Count;
+
+        this.ClassConsoleList = this.ListInfra.ArrayCreate(count);
+
+        long i;
+        i = 0;
+        while (i < count)
+        {
+            ClassConsole a;
+            a = new ClassConsole();
+            a.Init();
+
+            a.Load();
+
+            this.ClassConsoleList.SetAt(i, a);
+
+            i = i + 1;
+        }
 
         return false;
     }
