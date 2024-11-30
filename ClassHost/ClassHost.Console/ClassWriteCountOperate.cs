@@ -1,4 +1,4 @@
-namespace ClassServer.Console;
+namespace ClassHost.Console;
 
 class ClassWriteCountOperate : ClassWriteOperate
 {

@@ -1,4 +1,4 @@
-namespace ClassServerExe;
+namespace ClassHostExe;
 
 class Entry
 {

@@ -1,4 +1,4 @@
-namespace ClassServer.Console;
+namespace ClassHost.Console;
 
 class Console : ClassBase
 {
@@ -180,8 +180,10 @@ class Console : ClassBase
         return oo;
     }
 
-    public virtual bool ExecuteClassFold(String path)
+    public virtual bool ExecuteClassFold(Array pathArray)
     {
+        
+
         return false;
     }
 
