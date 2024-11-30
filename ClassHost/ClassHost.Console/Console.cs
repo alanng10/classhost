@@ -171,7 +171,7 @@ class Console : ClassBase
                 {
                     oo = true;
                 }
-            }   
+            }
         }
 
         a.Close();
