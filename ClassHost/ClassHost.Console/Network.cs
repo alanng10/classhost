@@ -223,11 +223,6 @@ class Network : NetworkNetwork
             bool ba;
             ba = (pathArray == null);
 
-            if (ba)
-            {
-                ConsoleConsole.This.Err.Write(this.TextInfra.S("Class Fold Path Array is null\n"));
-            }
-
             if (!ba)
             {
                 this.Console.ExecuteClassFold(pathArray);
