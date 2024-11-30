@@ -35,6 +35,7 @@ class Console : ClassBase
     protected virtual ClassConsole ClassConsole { get; set; }
     protected virtual ClassSource ClassSource { get; set; }
     protected virtual ClassWrite ClassWrite { get; set; }
+    protected virtual Array ClassConsoleList { get; set; }
 
     public virtual bool Execute()
     {
