@@ -97,9 +97,6 @@ class Network : NetworkNetwork
         Console console;
         console = this.Console;
 
-        Stream stream;
-        stream = this.Stream;
-
         long ka;
         ka = this.ReadyCount;
 
@@ -110,7 +107,7 @@ class Network : NetworkNetwork
                 return true;
             }
 
-            stream.Read(this.CaseData, this.CaseRange);
+            this.Stream.Read(this.CaseData, this.CaseRange);
 
             ka = ka - this.CaseRange.Count;
 
@@ -143,7 +140,7 @@ class Network : NetworkNetwork
 
             // this.Console.Log("Read Before 1111");
 
-            stream.Read(data, range);
+            this.Stream.Read(data, range);
 
             // this.Console.Log("Read After 1111");
 
@@ -175,7 +172,7 @@ class Network : NetworkNetwork
 
             // this.Console.Log("Write Before 1111");
 
-            stream.Write(data, range);
+            this.Stream.Write(data, range);
 
             // this.Console.Log("Write After 1111");
 
@@ -186,7 +183,24 @@ class Network : NetworkNetwork
 
         if (this.ProtoCase == 10)
         {
+            ka = this.CountGet(ka, 11);
+        }
 
+        if (this.ProtoCase == 11)
+        {
+            Data data;
+            data = new Data();
+            data.Count = this.Count;
+            data.Init();
+
+            Range range;
+            range = this.Range;
+
+            range.Count = this.Count;
+
+            this.Stream.Read(data, range);
+
+            
         }
 
         // this.Console.Log("Network read End");
