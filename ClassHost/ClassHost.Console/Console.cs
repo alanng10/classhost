@@ -1,10 +1,12 @@
 namespace ClassHost.Console;
 
-class Console : ClassBase
+class Console : TextAdd
 {
     public override bool Init()
     {
         base.Init();
+        this.InfraInfra = InfraInfra.This;
+        this.ListInfra = ListInfra.This;
         this.StorageInfra = StorageInfra.This;
         this.TextCodeKindList = TextCodeKindList.This;
         this.StorageStatusList = StorageStatusList.This;
@@ -27,6 +29,8 @@ class Console : ClassBase
 
     public virtual Network Network { get; set; }
     public virtual Thread Thread { get; set; }
+    protected virtual InfraInfra InfraInfra { get; set; }
+    protected virtual ListInfra ListInfra { get; set; }
     protected virtual StorageInfra StorageInfra { get; set; }
     protected virtual TextCodeKindList TextCodeKindList { get; set; }
     protected virtual StorageStatusList StorageStatusList { get; set; }

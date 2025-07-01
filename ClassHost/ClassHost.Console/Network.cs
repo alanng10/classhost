@@ -302,14 +302,11 @@ class Network : NetworkNetwork
             return -1;
         }
 
-        uint k;
+        long k;
         k = this.InfraInfra.DataMidGet(this.Data, this.Index);
-        
-        int kh;
-        kh = (int)k;
 
         long a;
-        a = kh;
+        a = k;
 
         this.Index = this.Index + ka;
 
@@ -328,7 +325,7 @@ class Network : NetworkNetwork
 
         this.Stream.Read(this.CountData, this.CountRange);
 
-        uint u;
+        long u;
         u = this.InfraInfra.DataMidGet(this.CountData, 0);
 
         int ke;
@@ -372,13 +369,10 @@ class Network : NetworkNetwork
             indexA = dataIndex + i * sizeof(ushort);
             indexB = i * sizeof(uint);
 
-            ushort kk;
+            long kk;
             kk = infraInfra.DataShortGet(data, indexA);
 
-            uint na;
-            na = kk;
-
-            infraInfra.DataCharSet(k, indexB, na);
+            infraInfra.DataCharSet(k, indexB, kk);
 
             i = i + 1;
         }
