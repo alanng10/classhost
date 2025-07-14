@@ -3,4 +3,5 @@
 call Clean
 echo:
 echo Make ClassHost
-call Script\ClassHost\Make
+call Script\Module\DeployInfra
+call Script\Module\Make
