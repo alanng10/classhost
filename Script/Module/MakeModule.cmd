@@ -1,6 +1,6 @@
 @echo off
 
 echo Make Module
-pushd ClassHost\ClassHostExe
+pushd Module\ClassHostExe
 dotnet build -v quiet
 popd
