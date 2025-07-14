@@ -20,7 +20,6 @@ global using TextInfra = Avalon.Text.Infra;
 global using Thread = Avalon.Thread.Thread;
 global using ThreadThis = Avalon.Thread.This;
 global using Stream = Avalon.Stream.Stream;
-global using TimeEvent = Avalon.Time.Event;
 global using Storage = Avalon.Storage.Storage;
 global using StorageMode = Avalon.Storage.Mode;
 global using StorageStatus = Avalon.Storage.Status;
