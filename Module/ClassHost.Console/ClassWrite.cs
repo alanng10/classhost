@@ -5,14 +5,27 @@ class ClassWrite : Any
     public override bool Init()
     {
         base.Init();
-        this.CountOperate = new ClassWriteCountOperate();
-        this.CountOperate.Write = this;
-        this.CountOperate.Init();
-
-        this.SetOperate = new ClassWriteSetOperate();
-        this.SetOperate.Write = this;
-        this.SetOperate.Init();
+        this.CountOperate = this.CreateCountOperate();
+        this.SetOperate = this.CreateSetOperate();
         return true;
+    }
+
+    protected virtual ClassWriteCountOperate CreateCountOperate()
+    {
+        ClassWriteCountOperate a;
+        a = new ClassWriteCountOperate();
+        a.Write = this;
+        a.Init();
+        return a;
+    }
+
+    protected virtual ClassWriteSetOperate CreateSetOperate()
+    {
+        ClassWriteSetOperate a;
+        a = new ClassWriteSetOperate();
+        a.Write = this;
+        a.Init();
+        return a;
     }
 
     public virtual Console Console { get; set; }
@@ -29,10 +42,11 @@ class ClassWrite : Any
 
     public virtual bool Execute()
     {
+        this.Arg = new ClassWriteArg();
+        this.Arg.Init();
+
         ClassWriteArg arg;
-        arg = new ClassWriteArg();
-        arg.Init();
-        this.Arg = arg;
+        arg = this.Arg;
 
         this.Operate = this.CountOperate;
 
