@@ -89,7 +89,7 @@ class ClassWrite : Any
         b = (varClass == null);
         
         long aa;
-        aa = this.OptionalData(b);
+        aa = this.OptionData(b);
 
         this.ExecuteByte(aa);
 
@@ -286,10 +286,10 @@ class ClassWrite : Any
         bool b;
         b = (value == null);
         
-        long aa;
-        aa = this.OptionalData(b);
+        long ka;
+        ka = this.OptionData(b);
 
-        this.ExecuteByte(aa);
+        this.ExecuteByte(ka);
 
         if (!b)
         {
