@@ -149,19 +149,13 @@ class Network : NetworkNetwork
 
             // this.Console.Log("Read After 1111");
 
-            long charCount;
-            charCount = data.Count / sizeof(ushort);
-
-            Data textData;
-            textData = this.CreateTextData(data, 0, charCount);
-
             long textCount;
-            textCount = textData.Count / sizeof(uint);
+            textCount = data.Count / sizeof(int);
 
             Text text;
             text = new Text();
             text.Init();
-            text.Data = textData;
+            text.Data = data;
             text.Range = new Range();
             text.Range.Init();
             text.Range.Count = textCount;
@@ -193,32 +187,6 @@ class Network : NetworkNetwork
         return true;
     }
 
-    protected virtual long ReadCount()
-    {
-        return this.ReadInt();
-    }
-
-    protected virtual long ReadInt()
-    {
-        long ka;
-        ka = sizeof(long);
-
-        if (!this.InfraInfra.ValidRange(this.Data.Count, this.Index, ka))
-        {
-            return -1;
-        }
-
-        long k;
-        k = this.InfraInfra.DataIntGet(this.Data, this.Index);
-
-        long a;
-        a = k;
-
-        this.Index = this.Index + ka;
-
-        return a;
-    }
-
     protected virtual long ProtoGet(long dataCount, long nextCase)
     {
         long kk;
@@ -248,35 +216,5 @@ class Network : NetworkNetwork
         dataCount = dataCount - kk;
 
         return dataCount;
-    }
-
-    protected virtual Data CreateTextData(Data data, long dataIndex, long charCount)
-    {
-        long count;
-        count = charCount;
-
-        Data k;
-        k = new Data();
-        k.Count = count * sizeof(int);
-        k.Init();
-
-        long i;
-        i = 0;
-        while (i < count)
-        {
-            long indexA;
-            indexA = dataIndex + i * sizeof(short);
-
-            long kk;
-            kk = this.InfraInfra.DataShortGet(data, indexA);
-
-            this.TextInfra.DataCharSet(k, i, kk);
-
-            i = i + 1;
-        }
-
-        Data a;
-        a = k;
-        return a;
     }
 }
