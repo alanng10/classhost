@@ -82,25 +82,25 @@ class Console : TextAdd
 
         this.Network.Open();
 
-        long o;
-        o = thread.ExecuteMain();
+        long k;
+        k = thread.ExecuteMain();
 
         // this.Log("ClassServer.Console:Console.Execute EventLoop End");
 
         this.Network.Final();
 
-        if (!(o == 0))
+        if (!(k == 0))
         {
-            String k;
-            k = this.StringInt(o);
+            String ka;
+            ka = this.StringInt(k);
 
             String kk;
-            kk = this.AddClear().AddS("Console Exit Status: ").Add(k).AddResult();
+            kk = this.AddClear().AddS("Console Exit Status: ").Add(ka).AddResult();
 
             this.Log(kk);
         }
-        
-        this.Status = o;
+
+        this.Status = k;
         return true;
     }
 
