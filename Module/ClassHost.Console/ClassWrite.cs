@@ -120,18 +120,20 @@ class ClassWrite : Any
 
     protected virtual bool ExecutePart(Array array)
     {
-        this.Operate.ExecuteMemberStart();
+        this.Operate.ExecutePartStart();
         
-        int kk;
+        long kk;
         kk = 0;
+
         long count;
         count = array.Count;
+
         long i;
         i = 0;
         while (i < count)
         {
             ClassNodeComp a;
-            a = (ClassNodeComp)array.GetAt(i);
+            a = array.GetAt(i) as ClassNodeComp;
 
             if (!(a == null))
             {
@@ -143,7 +145,7 @@ class ClassWrite : Any
             i = i + 1;
         }
 
-        this.Operate.ExecuteMemberEnd(kk);
+        this.Operate.ExecutePartEnd(kk);
         return true;
     }
 
