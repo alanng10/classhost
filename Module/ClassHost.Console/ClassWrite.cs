@@ -110,7 +110,7 @@ class ClassWrite : Any
                 this.ExecuteRange(kaa.Range);
             }
 
-            this.ExecuteMember(varClass.Part.Value);
+            this.ExecutePart(varClass.Part.Value);
 
             this.ExecuteRange(varClass.Range);
         }
@@ -118,7 +118,7 @@ class ClassWrite : Any
         return true;
     }
 
-    protected virtual bool ExecuteMember(Array array)
+    protected virtual bool ExecutePart(Array array)
     {
         this.Operate.ExecuteMemberStart();
         
