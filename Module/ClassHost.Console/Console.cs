@@ -51,29 +51,23 @@ class Console : TextAdd
 
         this.ClassConsole.Task = task;
 
-        ClassSource source;
-        source = new ClassSource();
-        source.Init();
-        source.Index = 0;
-        source.Name = this.S("Code");
-
-        this.ClassSource = source;
+        this.ClassSource = new ClassSource();
+        this.ClassSource.Init();
+        this.ClassSource.Index = 0;
+        this.ClassSource.Name = this.S("Code");
 
         Array array;
         array = this.ListInfra.ArrayCreate(1);
-        array.SetAt(0, source);
+        array.SetAt(0, this.ClassSource);
 
         this.ClassConsole.Source = array;
 
-        Network network;
-        network = new Network();
-        network.Console = this;
-        network.Init();
+        this.Network = new Network();
+        this.Network.Console = this;
+        this.Network.Init();
 
-        this.Network = network;
-
-        network.HostName = this.HostName;
-        network.HostPort = this.HostPort;
+        this.Network.HostName = this.HostName;
+        this.Network.HostPort = this.HostPort;
 
         ThreadThis current;
         current = new ThreadThis();
@@ -86,14 +80,14 @@ class Console : TextAdd
 
         // this.Log("ClassServer.Console:Console.Execute EventLoop Start");
 
-        network.Open();
+        this.Network.Open();
 
         long o;
         o = thread.ExecuteMain();
 
         // this.Log("ClassServer.Console:Console.Execute EventLoop End");
 
-        network.Final();
+        this.Network.Final();
 
         if (!(o == 0))
         {
