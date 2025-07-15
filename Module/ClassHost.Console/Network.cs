@@ -79,7 +79,7 @@ class Network : NetworkNetwork
 
         if (this.ProtoCase == -1)
         {
-            if (readyCount < 1)
+            if (readyCount < this.CaseRange.Count)
             {
                 return true;
             }
