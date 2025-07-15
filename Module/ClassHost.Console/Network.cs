@@ -190,101 +190,8 @@ class Network : NetworkNetwork
             this.ProtoCase = -1;
         }
 
-        if (this.ProtoCase == 10)
-        {
-            ka = this.CountGet(ka, 11);
-        }
-
-        if (this.ProtoCase == 11)
-        {
-            Data data;
-            data = new Data();
-            data.Count = this.Count;
-            data.Init();
-
-            Range range;
-            range = this.Range;
-
-            range.Count = this.Count;
-
-            this.Stream.Read(data, range);
-
-            this.Data = data;
-            this.Index = 0;
-
-            Array pathArray;
-            pathArray = this.ReadStringArray();
-
-            this.Data = null;
-            this.Index = -1;
-
-            this.ProtoCase = -1;
-
-            bool ba;
-            ba = (pathArray == null);
-
-            if (!ba)
-            {
-                this.Console.ExecuteClassFold(pathArray);
-            }
-        }
-
         // this.Console.Log("Network read End");
         return true;
-    }
-
-    protected virtual Array ReadStringArray()
-    {
-        long count;
-        count = this.ReadCount();
-
-        if (count == -1)
-        {
-            return null;
-        }
-
-        Array array;
-        array = this.ListInfra.ArrayCreate(count);
-
-        long i;
-        i = 0;
-        while (i < count)
-        {
-            String a;
-            a = this.ReadString();
-
-            if (a == null)
-            {
-                return null;
-            }
-
-            array.SetAt(i, a);
-
-            i = i + 1;
-        }
-
-        return array;
-    }
-
-    protected virtual String ReadString()
-    {
-        long count;
-        count = this.ReadCount();
-
-        if (count == -1)
-        {
-            return null;
-        }
-
-        Data data;
-        data = this.CreateTextData(this.Data, this.Index, count);
-
-        String a;
-        a = this.StringComp.CreateData(data, null);
-
-        this.Index = this.Index + count * sizeof(ushort);
-
-        return a;
     }
 
     protected virtual long ReadCount()
@@ -349,15 +256,12 @@ class Network : NetworkNetwork
 
     protected virtual Data CreateTextData(Data data, long dataIndex, long charCount)
     {
-        InfraInfra infraInfra;
-        infraInfra = this.InfraInfra;
-
         long count;
         count = charCount;
 
         Data k;
         k = new Data();
-        k.Count = count * sizeof(uint);
+        k.Count = count * sizeof(int);
         k.Init();
 
         long i;
@@ -365,14 +269,12 @@ class Network : NetworkNetwork
         while (i < count)
         {
             long indexA;
-            long indexB;
-            indexA = dataIndex + i * sizeof(ushort);
-            indexB = i * sizeof(uint);
+            indexA = dataIndex + i * sizeof(short);
 
             long kk;
-            kk = infraInfra.DataShortGet(data, indexA);
+            kk = this.InfraInfra.DataShortGet(data, indexA);
 
-            infraInfra.DataCharSet(k, indexB, kk);
+            this.TextInfra.DataCharSet(k, i, kk);
 
             i = i + 1;
         }
