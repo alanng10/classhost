@@ -362,7 +362,7 @@ class ClassWrite : Any
                 long previous;
                 previous = start - 1;
 
-                token = (ClassTokenToken)code.Token.GetAt(previous);
+                token = code.Token.GetAt(previous) as ClassTokenToken;
 
                 tokenRange = token.Range;
 
