@@ -183,9 +183,7 @@ class ClassWrite : Any
         }
         this.ExecuteOptionString(name);
 
-        long count;
-        count = this.CountData(varField.Count);
-        this.ExecuteByte(count);
+        this.ExecuteClassCount(varField.Count);
 
         this.ExecuteRange(varField.Range);
         return true;
@@ -205,9 +203,7 @@ class ClassWrite : Any
         }
         this.ExecuteOptionString(name);
 
-        long count;
-        count = this.CountData(varMaide.Count);
-        this.ExecuteByte(count);
+        this.ExecuteClassCount(varMaide.Count);
 
         this.ExecuteRange(varMaide.Range);
         return true;
