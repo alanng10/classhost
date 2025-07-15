@@ -14,7 +14,7 @@ class ClassWriteCountOperate : ClassWriteOperate
     {
         ClassWriteArg arg;
         arg = this.Write.Arg;
-        arg.Index = arg.Index + sizeof(int);
+        arg.Index = arg.Index + sizeof(long);
         return true;
     }
 

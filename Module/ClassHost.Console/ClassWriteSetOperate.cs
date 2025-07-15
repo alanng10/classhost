@@ -10,16 +10,16 @@ class ClassWriteSetOperate : ClassWriteOperate
         ClassWriteArg arg;
         arg = write.Arg;
 
-        int index;
+        long index;
         index = arg.Index;
 
         Data data;
         data = arg.Data;
 
-        int start;
+        long start;
         start = write.Start;
 
-        int k;
+        long k;
         k = start + index;
 
         data.Set(k, value);

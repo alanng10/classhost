@@ -20,8 +20,8 @@ class ClassWrite : Any
     public virtual Array Error { get; set; }
     public virtual ClassTokenCode TokenCode { get; set; }
     public virtual Array SourceText { get; set; }
-    public virtual int Start { get; set; }
-    public virtual Data Data { get; set; }
+    public virtual long Start { get; set; }
+    public virtual Data Result { get; set; }
     public virtual ClassWriteArg Arg { get; set; }
     protected virtual ClassWriteOperate Operate { get; set; }
     protected virtual ClassWriteCountOperate CountOperate { get; set; }
@@ -38,7 +38,7 @@ class ClassWrite : Any
         this.ResetStageIndex();
         this.ExecuteStage();
 
-        int count;
+        long count;
         count = this.Start + arg.Index;
 
         Data data;
@@ -52,7 +52,7 @@ class ClassWrite : Any
         this.ResetStageIndex();
         this.ExecuteStage();
 
-        this.Data = arg.Data;
+        this.Result = arg.Data;
 
         this.Arg = null;
         return true;
