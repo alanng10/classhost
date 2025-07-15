@@ -112,11 +112,11 @@ class Console : TextAdd
 
     public virtual bool Log(String text)
     {
-        String aa;
-        aa = this.AddClear().Add(text).AddLine().AddResult();
+        String ka;
+        ka = this.AddClear().Add(text).AddLine().AddResult();
 
-        bool oo;
-        oo = false;
+        bool k;
+        k = false;
 
         StorageMode mode;
         mode = new StorageMode();
@@ -147,7 +147,7 @@ class Console : TextAdd
                 outKind = this.TextCodeKindList.Utf8;
 
                 Data data;
-                data = this.TextInfra.StringDataCreateString(aa);
+                data = this.TextInfra.StringDataCreateString(ka);
 
                 Range dataRange;
                 dataRange = new Range();
@@ -166,7 +166,7 @@ class Console : TextAdd
 
                 if (storage.Status == this.StorageStatusList.NoError)
                 {
-                    oo = true;
+                    k = true;
                 }
             }
         }
@@ -174,7 +174,7 @@ class Console : TextAdd
         storage.Close();
         storage.Final();
 
-        return oo;
+        return k;
     }
 
     public virtual Data ExecuteClass(Text sourceText)
