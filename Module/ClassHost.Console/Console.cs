@@ -112,12 +112,6 @@ class Console : TextAdd
 
     public virtual bool Log(String text)
     {
-        TextCodeKindList codeKindList;
-        codeKindList = this.TextCodeKindList;
-
-        StorageStatusList statusList;
-        statusList = this.StorageStatusList;
-
         String aa;
         aa = this.AddClear().Add(text).AddLine().AddResult();
 
@@ -131,26 +125,26 @@ class Console : TextAdd
         mode.Write = true;
         mode.Exist = true;
 
-        Storage a;
-        a = new Storage();
-        a.Init();
-        a.Path = this.S("ClassHost.Console.data/log.txt");
-        a.Mode = mode;
-        a.Open();
+        Storage storage;
+        storage = new Storage();
+        storage.Init();
+        storage.Path = this.S("ClassHost.Console.data/log.txt");
+        storage.Mode = mode;
+        storage.Open();
 
-        if (a.Status == statusList.NoError)
+        if (storage.Status == this.StorageStatusList.NoError)
         {
             long kn;
-            kn = a.Stream.Count;
+            kn = storage.Stream.Count;
 
-            a.Stream.PosSet(kn);
+            storage.Stream.PosSet(kn);
 
-            if (a.Status == statusList.NoError)
+            if (storage.Status == this.StorageStatusList.NoError)
             {
                 TextCodeKind innKind;
                 TextCodeKind outKind;
-                innKind = codeKindList.Utf32;
-                outKind = codeKindList.Utf8;
+                innKind = this.TextCodeKindList.Utf32;
+                outKind = this.TextCodeKindList.Utf8;
 
                 Data data;
                 data = this.TextInfra.StringDataCreateString(aa);
@@ -168,17 +162,17 @@ class Console : TextAdd
                 range.Init();
                 range.Count = result.Count;
 
-                a.Stream.Write(result, range);
+                storage.Stream.Write(result, range);
 
-                if (a.Status == statusList.NoError)
+                if (storage.Status == this.StorageStatusList.NoError)
                 {
                     oo = true;
                 }
             }
         }
 
-        a.Close();
-        a.Final();
+        storage.Close();
+        storage.Final();
 
         return oo;
     }
