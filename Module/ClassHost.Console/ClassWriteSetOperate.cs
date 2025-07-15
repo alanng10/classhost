@@ -20,7 +20,7 @@ class ClassWriteSetOperate : ClassWriteOperate
     {
         ClassWriteArg arg;
         arg = this.Write.Arg;
-        
+
         this.Write.ExecuteCount(arg.MemberCount);
         return true;
     }
