@@ -19,8 +19,6 @@ class Network : NetworkNetwork
 
         this.ProtoCase = -1;
 
-        this.Index = -1;
-
         this.CaseData = new Data();
         this.CaseData.Count = 1;
         this.CaseData.Init();
@@ -46,14 +44,12 @@ class Network : NetworkNetwork
     protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual StringComp StringComp { get; set; }
     protected virtual Range Range { get; set; }
-    protected long ProtoCase { get; set; }
-    protected long ProtoCount { get; set; }
-    protected Data CaseData { get; set; }
-    protected Range CaseRange { get; set; }
-    protected Data CountData { get; set; }
-    protected Range CountRange { get; set; }
-    protected virtual Data Data { get; set; }
-    protected virtual long Index { get; set; }
+    protected virtual long ProtoCase { get; set; }
+    protected virtual long ProtoCount { get; set; }
+    protected virtual Data CaseData { get; set; }
+    protected virtual Range CaseRange { get; set; }
+    protected virtual Data CountData { get; set; }
+    protected virtual Range CountRange { get; set; }
     
     public override bool StatusEvent()
     {
