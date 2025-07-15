@@ -177,11 +177,6 @@ class Network : NetworkNetwork
         long ke;
         ke = this.InfraInfra.DataIntGet(this.CountData, 0);
 
-        if (ke < 0)
-        {
-            this.Console.Log(this.TextInfra.S("Network ceive count unvalid"));
-        }
-
         // this.Console.Log("Network received data count: " + ke.ToString());
 
         this.ProtoCount = ke;
