@@ -181,7 +181,7 @@ class ClassWrite : Any
         {
             name = varField.Name.Value;
         }
-        this.ExecuteOptionalString(name);
+        this.ExecuteOptionString(name);
 
         long count;
         count = this.CountData(varField.Count);
@@ -203,7 +203,7 @@ class ClassWrite : Any
         {
             name = varMaide.Name.Value;
         }
-        this.ExecuteOptionalString(name);
+        this.ExecuteOptionString(name);
 
         long count;
         count = this.CountData(varMaide.Count);
@@ -221,7 +221,7 @@ class ClassWrite : Any
         {
             varClass = a.Value;
         }
-        this.ExecuteOptionalString(varClass);
+        this.ExecuteOptionString(varClass);
         return true;
     }
 
@@ -281,7 +281,7 @@ class ClassWrite : Any
         return k;
     }
 
-    protected virtual bool ExecuteOptionalString(String value)
+    protected virtual bool ExecuteOptionString(String value)
     {
         bool b;
         b = (value == null);
