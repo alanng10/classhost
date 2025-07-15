@@ -232,8 +232,8 @@ class ClassWrite : Any
         long count;
         count = end - index;
 
-        this.ExecuteIndex((int)index);
-        this.ExecuteCount((int)count);
+        this.ExecuteIndex(index);
+        this.ExecuteCount(count);
         return true;
     }
 
