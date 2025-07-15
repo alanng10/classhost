@@ -19,7 +19,7 @@ class ClassWriteOperate : Any
         return false;
     }
 
-    public virtual bool ExecutePartEnd(int count)
+    public virtual bool ExecutePartEnd(long count)
     {
         return false;
     }

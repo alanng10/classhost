@@ -26,7 +26,7 @@ class ClassWriteCountOperate : ClassWriteOperate
         return true;
     }
 
-    public override bool ExecutePartEnd(int count)
+    public override bool ExecutePartEnd(long count)
     {
         ClassWriteArg arg;
         arg = this.Write.Arg;
