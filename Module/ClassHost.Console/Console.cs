@@ -124,7 +124,7 @@ class Console : TextAdd
 
         bool oo;
         oo = false;
-        
+
         StorageMode mode;
         mode = new StorageMode();
         mode.Init();
@@ -155,7 +155,7 @@ class Console : TextAdd
 
                 Data data;
                 data = this.TextInfra.StringDataCreateString(aa);
-                
+
                 Range dataRange;
                 dataRange = new Range();
                 dataRange.Init();
