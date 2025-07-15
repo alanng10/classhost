@@ -8,9 +8,8 @@ class Network : NetworkNetwork
         this.InfraInfra = InfraInfra.This;
         this.ListInfra = ListInfra.This;
         this.TextInfra = TextInfra.This;
-        this.ConsoleConsole = ConsoleConsole.This;
-
         this.StringComp = StringComp.This;
+        this.ConsoleConsole = ConsoleConsole.This;
 
         this.Range = new Range();
         this.Range.Init();
@@ -41,8 +40,8 @@ class Network : NetworkNetwork
     protected virtual InfraInfra InfraInfra { get; set; }
     protected virtual ListInfra ListInfra { get; set; }
     protected virtual TextInfra TextInfra { get; set; }
-    protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual StringComp StringComp { get; set; }
+    protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual Range Range { get; set; }
     protected virtual long ProtoCase { get; set; }
     protected virtual long ProtoCount { get; set; }
