@@ -19,14 +19,13 @@ class Console : TextAdd
         this.ClassWrite = new ClassWrite();
         this.ClassWrite.Console = this;
         this.ClassWrite.Init();
-        this.ClassWrite.Start = sizeof(int);
+        this.ClassWrite.Start = sizeof(long);
         return true;
     }
 
     public virtual String HostName { get; set; }
     public virtual long HostPort { get; set; }
     public virtual long Status { get; set; }
-
     public virtual Network Network { get; set; }
     public virtual Thread Thread { get; set; }
     protected virtual InfraInfra InfraInfra { get; set; }
@@ -235,17 +234,17 @@ class Console : TextAdd
 
         this.ClassSource.Text = null;
 
-        Array aa;
-        aa = result.Root;
+        Array rootArray;
+        rootArray = result.Root;
 
         ClassNodeClass varClass;
-        varClass = (ClassNodeClass)aa.GetAt(0);
+        varClass = rootArray.GetAt(0) as ClassNodeClass;
 
-        Array ab;
-        ab = tokenResult.Code;
+        Array codeArray;
+        codeArray = tokenResult.Code;
 
         ClassTokenCode code;
-        code = (ClassTokenCode)ab.GetAt(0);
+        code = codeArray.GetAt(0) as ClassTokenCode;
 
         ClassWrite write;
         write = this.ClassWrite;
@@ -262,54 +261,22 @@ class Console : TextAdd
         // this.Log("Console.ExecuteClass 4444");
 
         Data data;
-        data = write.Data;
+        data = write.Result;
 
-        write.Data = null;
+        write.Result = null;
 
         write.SourceText = null;
         write.TokenCode = null;
         write.Error = null;
         write.NodeClass = null;
 
-        int k;
-        k = (int)data.Count;
-        
+        long k;
+        k = data.Count;
+
         k = k - write.Start;
 
-        // this.Log("Out Data count: " + k);
+        this.InfraInfra.DataIntSet(data, 0, k);
 
-        // this.Log("Out Data Start");
-
-        // int start;
-        // start = write.Start;
-        // int count;
-        // count = k;
-        // int i;
-        // i = 0;
-        // while (i < count)
-        // {
-        //     int oo;
-        //     oo = data.Get(start + i);
-
-        //     byte ob;
-        //     ob = (byte)oo;
-
-        //     string kkk;
-        //     kkk = ob.ToString("x2");
-
-        //     this.Log(kkk);
-            
-        //     i = i + 1;
-        // }
-
-        // this.Log("Out Data End");
-
-        long n;
-        n = k;
-
-        this.InfraInfra.DataMidSet(data, 0, n);
-
-        // this.Log("Console.ExecueClass End");
         return data;
     }
 }
