@@ -62,7 +62,7 @@ class Console : TextAdd
         Array array;
         array = this.ListInfra.ArrayCreate(1);
         array.SetAt(0, source);
-        
+
         this.ClassConsole.Source = array;
 
         Network network;
