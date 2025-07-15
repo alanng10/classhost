@@ -418,19 +418,19 @@ class ClassWrite : Any
     {
         long a;
         a = 0;
-        if (count is ClassNodePrusateCount)
+        if (!((count as ClassNodePrusateCount) == null))
         {
             a = 0;
         }
-        if (count is ClassNodePrecateCount)
+        if (!((count as ClassNodePrecateCount) == null))
         {
             a = 1;
         }
-        if (count is ClassNodePronateCount)
+        if (!((count as ClassNodePronateCount) == null))
         {
             a = 2;
         }
-        if (count is ClassNodePrivateCount)
+        if (!((count as ClassNodePrivateCount) == null))
         {
             a = 3;
         }
