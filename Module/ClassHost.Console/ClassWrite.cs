@@ -35,32 +35,30 @@ class ClassWrite : Any
         this.Arg = arg;
 
         this.Operate = this.CountOperate;
-        this.ResetStageIndex();
+
+        this.ResetStage();
         this.ExecuteStage();
 
         long count;
-        count = this.Start + arg.Index;
+        count = arg.Index;
 
-        Data data;
-        data = new Data();
-        data.Count = count;
-        data.Init();
-
-        arg.Data = data;
+        arg.Data = new Data();
+        arg.Data.Count = count;
+        arg.Data.Init();
 
         this.Operate = this.SetOperate;
-        this.ResetStageIndex();
+
+        this.ResetStage();
         this.ExecuteStage();
 
         this.Result = arg.Data;
-
         this.Arg = null;
         return true;
     }
 
-    protected virtual bool ResetStageIndex()
+    protected virtual bool ResetStage()
     {
-        this.Arg.Index = 0;
+        this.Arg.Index = this.Start;
         return true;
     }
 
