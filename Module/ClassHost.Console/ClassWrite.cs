@@ -260,16 +260,13 @@ class ClassWrite : Any
         code = this.TokenCode;
 
         ClassTokenToken token;
-        token = (ClassTokenToken)code.Token.GetAt(index);
+        token = code.Token.GetAt(index) as ClassTokenToken;
 
         Text line;
-        line = (Text)this.SourceText.GetAt(token.Row);
-
-        Range tokenRange;
-        tokenRange = token.Range;
+        line = this.SourceText.GetAt(token.Row) as Text;
 
         long k;
-        k = line.Range.Index + tokenRange.Index + tokenRange.Count;
+        k = line.Range.Index + token.Range.Index + token.Range.Count;
         
         return k;
     }
