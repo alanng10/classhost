@@ -66,6 +66,8 @@ class ClassWrite : Any
         this.ExecuteStage();
 
         this.Result = arg.Data;
+
+        this.Operate = null;
         this.Arg = null;
         return true;
     }
