@@ -359,10 +359,10 @@ class ClassWrite : Any
             }
             if (!baa)
             {
-                long previous;
-                previous = start - 1;
+                long prev;
+                prev = start - 1;
 
-                token = code.Token.GetAt(previous) as ClassTokenToken;
+                token = code.Token.GetAt(prev) as ClassTokenToken;
 
                 tokenRange = token.Range;
 
