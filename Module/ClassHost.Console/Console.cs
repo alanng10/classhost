@@ -199,18 +199,18 @@ class Console : TextAdd
 
         // this.Log("Console.ExecuteClass 2222");
 
-        ClassNodeResult result;
-        result = this.ClassConsole.Result.Node;
+        ClassNodeResult nodeResult;
+        nodeResult = this.ClassConsole.Result.Node;
 
         ClassTokenResult tokenResult;
         tokenResult = this.ClassConsole.Result.Token;
-        
+
         this.ClassConsole.Result = null;
 
         this.ClassSource.Text = null;
 
         Array rootArray;
-        rootArray = result.Root;
+        rootArray = nodeResult.Root;
 
         ClassNodeClass varClass;
         varClass = rootArray.GetAt(0) as ClassNodeClass;
@@ -225,7 +225,7 @@ class Console : TextAdd
         write = this.ClassWrite;
 
         write.NodeClass = varClass;
-        write.Error = result.Error;
+        write.Error = nodeResult.Error;
         write.TokenCode = code;
         write.SourceText = text;
 
