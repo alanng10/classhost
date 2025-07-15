@@ -15,7 +15,7 @@ class Network : NetworkNetwork
         this.Range = new Range();
         this.Range.Init();
 
-        this.Count = -1;
+        this.ProtoCount = -1;
 
         this.ProtoCase = -1;
 
@@ -46,13 +46,12 @@ class Network : NetworkNetwork
     protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual StringComp StringComp { get; set; }
     protected virtual Range Range { get; set; }
-
-    private long ProtoCase { get; set; }
-    private long Count { get; set; }
-    private Data CaseData { get; set; }
-    private Range CaseRange { get; set; }
-    private Data CountData { get; set; }
-    private Range CountRange { get; set; }
+    protected long ProtoCase { get; set; }
+    protected long ProtoCount { get; set; }
+    protected Data CaseData { get; set; }
+    protected Range CaseRange { get; set; }
+    protected Data CountData { get; set; }
+    protected Range CountRange { get; set; }
     protected virtual Data Data { get; set; }
     protected virtual long Index { get; set; }
     
@@ -122,12 +121,12 @@ class Network : NetworkNetwork
 
         if (this.ProtoCase == 0)
         {
-            ka = this.CountGet(ka, 1);
+            ka = this.ProtoGet(ka, 1);
         }
 
         if (this.ProtoCase == 1)
         {
-            if (ka < this.Count)
+            if (ka < this.ProtoCount)
             {
                 return true;
             }
@@ -136,13 +135,13 @@ class Network : NetworkNetwork
 
             Data data;
             data = new Data();
-            data.Count = this.Count;
+            data.Count = this.ProtoCount;
             data.Init();
 
             Range range;
             range = this.Range;
 
-            range.Count = this.Count;
+            range.Count = this.ProtoCount;
 
             // this.Console.Log("Read Before 1111");
 
@@ -185,7 +184,7 @@ class Network : NetworkNetwork
 
             // this.Console.Log("Write After 1111");
 
-            this.Count = -1;
+            this.ProtoCount = -1;
 
             this.ProtoCase = -1;
         }
@@ -220,7 +219,7 @@ class Network : NetworkNetwork
         return a;
     }
 
-    protected virtual long CountGet(long dataCount, long nextCase)
+    protected virtual long ProtoGet(long dataCount, long nextCase)
     {
         long kk;
         kk = sizeof(long);
@@ -242,7 +241,7 @@ class Network : NetworkNetwork
 
         // this.Console.Log("Network received data count: " + ke.ToString());
 
-        this.Count = ke;
+        this.ProtoCount = ke;
 
         this.ProtoCase = nextCase;
 
