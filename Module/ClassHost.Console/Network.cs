@@ -13,8 +13,6 @@ class Network : NetworkNetwork
         this.Range = new Range();
         this.Range.Init();
 
-        this.ProtoCount = -1;
-
         this.ProtoCase = -1;
 
         this.CaseData = new Data();
@@ -42,7 +40,6 @@ class Network : NetworkNetwork
     protected virtual ConsoleConsole ConsoleConsole { get; set; }
     protected virtual Range Range { get; set; }
     protected virtual long ProtoCase { get; set; }
-    protected virtual long ProtoCount { get; set; }
     protected virtual Data CaseData { get; set; }
     protected virtual Range CaseRange { get; set; }
     protected virtual Data CountData { get; set; }
@@ -77,31 +74,44 @@ class Network : NetworkNetwork
     {
         // this.Console.Log("Network read Start");
 
-        long ka;
-        ka = this.ReadyCount;
+        long readyCount;
+        readyCount = this.ReadyCount;
 
         if (this.ProtoCase == -1)
         {
-            if (ka < 1)
+            if (readyCount < 1)
             {
                 return true;
             }
 
             this.Stream.Read(this.CaseData, this.CaseRange);
 
-            ka = ka - this.CaseRange.Count;
+            readyCount = readyCount - this.CaseRange.Count;
 
             this.ProtoCase = this.CaseData.Get(0);
         }
 
         if (this.ProtoCase == 0)
         {
-            ka = this.ProtoGet(ka, 1);
-        }
+            long kk;
+            kk = sizeof(long);
 
-        if (this.ProtoCase == 1)
-        {
-            if (ka < this.ProtoCount)
+            if (readyCount < kk)
+            {
+                return true;
+            }
+
+            this.Stream.Read(this.CountData, this.CountRange);
+
+            long ke;
+            ke = this.InfraInfra.DataIntGet(this.CountData, 0);
+
+            long dataCount;
+            dataCount = ke;
+
+            readyCount = readyCount - kk;
+
+            if (readyCount < dataCount)
             {
                 return true;
             }
@@ -110,13 +120,13 @@ class Network : NetworkNetwork
 
             Data data;
             data = new Data();
-            data.Count = this.ProtoCount;
+            data.Count = dataCount;
             data.Init();
 
             Range range;
             range = this.Range;
 
-            range.Count = this.ProtoCount;
+            range.Count = data.Count;
 
             // this.Console.Log("Read Before 1111");
 
@@ -153,36 +163,10 @@ class Network : NetworkNetwork
 
             // this.Console.Log("Write After 1111");
 
-            this.ProtoCount = -1;
-
             this.ProtoCase = -1;
         }
 
         // this.Console.Log("Network read End");
         return true;
-    }
-
-    protected virtual long ProtoGet(long dataCount, long nextCase)
-    {
-        long kk;
-        kk = sizeof(long);
-
-        if (dataCount < kk)
-        {
-            return dataCount;
-        }
-
-        this.Stream.Read(this.CountData, this.CountRange);
-
-        long ke;
-        ke = this.InfraInfra.DataIntGet(this.CountData, 0);
-
-        this.ProtoCount = ke;
-
-        this.ProtoCase = nextCase;
-
-        dataCount = dataCount - kk;
-
-        return dataCount;
     }
 }
