@@ -453,22 +453,19 @@ class ClassWrite : Any
         Console console;
         console = this.Console;
  
-        int count;
-        count = (int)console.StringCount(value);
+        long count;
+        count = console.StringCount(value);
 
         this.ExecuteCount(count);
 
-        int i;
+        long i;
         i = 0;
         while (i < count)
         {
-            long oc;
-            oc = console.StringChar(value, i);
+            long ka;
+            ka = console.StringChar(value, i);
 
-            byte ob;
-            ob = (byte)oc;
-
-            this.ExecuteByte(ob);
+            this.ExecuteByte(ka);
 
             i = i + 1;
         }
