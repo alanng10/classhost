@@ -49,7 +49,7 @@ class Network : NetworkNetwork
     protected virtual Range CaseRange { get; set; }
     protected virtual Data CountData { get; set; }
     protected virtual Range CountRange { get; set; }
-    
+
     public override bool StatusEvent()
     {
         if (!(this.Status == this.NetworkStatusList.NoError))
@@ -62,15 +62,12 @@ class Network : NetworkNetwork
 
     public override bool CaseEvent()
     {
-        NetworkCase varCase;
-        varCase = this.Case;
-
-        if (varCase == this.NetworkCaseList.Connected)
+        if (this.Case == this.NetworkCaseList.Connected)
         {
             // this.Console.Log("ClassServer.Console:NetworkCaseState.Execute Connected");
         }
 
-        if (varCase == this.NetworkCaseList.Unconnected)
+        if (this.Case == this.NetworkCaseList.Unconnected)
         {
             // this.Console.Log("ClassServer.Console:NetworkCaseState.Execute Unconnected");
         }
