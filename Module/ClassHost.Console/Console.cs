@@ -189,7 +189,7 @@ class Console : TextAdd
         // this.Log("Console.ExecuteClass Start");
 
         Array text;
-        text = this.TextLimit(sourceText, this.TB(this.TextInfra.NewLine));
+        text = this.TextLine(sourceText);
 
         this.ClassSource.Text = text;
 
