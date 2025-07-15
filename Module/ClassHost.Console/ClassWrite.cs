@@ -399,10 +399,10 @@ class ClassWrite : Any
             }
         }
 
-        this.ExecuteIndex((int)startRow);
-        this.ExecuteIndex((int)startCol);
-        this.ExecuteIndex((int)endRow);
-        this.ExecuteIndex((int)endCol);
+        this.ExecuteIndex(startRow);
+        this.ExecuteIndex(startCol);
+        this.ExecuteIndex(endRow);
+        this.ExecuteIndex(endCol);
         return true;
     }
 
