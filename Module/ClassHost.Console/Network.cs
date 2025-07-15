@@ -85,9 +85,6 @@ class Network : NetworkNetwork
     {
         // this.Console.Log("Network read Start");
 
-        Console console;
-        console = this.Console;
-
         long ka;
         ka = this.ReadyCount;
 
