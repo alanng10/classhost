@@ -292,17 +292,17 @@ class ClassWrite : Any
 
     protected virtual bool ExecuteErrorArray(Array array)
     {
-        int count;
-        count = (int)array.Count;
+        long count;
+        count = array.Count;
 
         this.ExecuteCount(count);
 
-        int i;
+        long i;
         i = 0;
         while (i < count)
         {
             ClassError a;
-            a = (ClassError)array.GetAt(i);
+            a = array.GetAt(i) as ClassError;
 
             this.ExecuteError(a);
 
