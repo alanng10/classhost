@@ -134,10 +134,10 @@ class Console : TextAdd
 
         if (storage.Status == this.StorageStatusList.NoError)
         {
-            long kn;
-            kn = storage.Stream.Count;
+            long pos;
+            pos = storage.Stream.Count;
 
-            storage.Stream.PosSet(kn);
+            storage.Stream.PosSet(pos);
 
             if (storage.Status == this.StorageStatusList.NoError)
             {
