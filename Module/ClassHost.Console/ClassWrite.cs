@@ -72,7 +72,7 @@ class ClassWrite : Any
         return true;
     }
 
-    protected virtual bool ResetStage()
+    public virtual bool ResetStage()
     {
         this.Arg.Index = this.Start;
         return true;
