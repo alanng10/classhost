@@ -285,11 +285,8 @@ class ClassWrite : Any
     {
         bool b;
         b = (value == null);
-        
-        long ka;
-        ka = this.OptionData(b);
 
-        this.ExecuteByte(ka);
+        this.ExecuteOption(b);
 
         if (!b)
         {
@@ -446,6 +443,15 @@ class ClassWrite : Any
             k = 1;
         }
         return k;
+    }
+
+    protected virtual bool ExecuteOption(bool b)
+    {
+        long k;
+        k = this.OptionData(b);
+
+        this.ExecuteByte(k);
+        return true;
     }
 
     protected virtual bool ExecuteString(String value)
