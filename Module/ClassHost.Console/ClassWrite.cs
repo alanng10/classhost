@@ -281,6 +281,15 @@ class ClassWrite : Any
         return k;
     }
 
+    protected virtual bool ExecuteClassCount(ClassNodeCount count)
+    {
+        long k;
+        k = this.CountData(count);
+
+        this.ExecuteByte(k);
+        return true;
+    }
+
     protected virtual bool ExecuteOptionString(String value)
     {
         bool b;
