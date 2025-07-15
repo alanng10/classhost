@@ -374,7 +374,7 @@ class ClassWrite : Any
         }
         if (!ba)
         {
-            token = (ClassTokenToken)code.Token.GetAt(start);
+            token = code.Token.GetAt(start) as ClassTokenToken;
 
             tokenRange = token.Range;
 
