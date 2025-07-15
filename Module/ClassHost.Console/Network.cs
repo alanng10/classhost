@@ -30,7 +30,7 @@ class Network : NetworkNetwork
         this.CaseRange.Count = this.CaseData.Count;
 
         this.CountData = new Data();
-        this.CountData.Count = sizeof(int);
+        this.CountData.Count = sizeof(long);
         this.CountData.Init();
 
         this.CountRange = new Range();
@@ -202,7 +202,7 @@ class Network : NetworkNetwork
     protected virtual long ReadInt()
     {
         long ka;
-        ka = sizeof(uint);
+        ka = sizeof(long);
 
         if (!this.InfraInfra.ValidRange(this.Data.Count, this.Index, ka))
         {
@@ -210,7 +210,7 @@ class Network : NetworkNetwork
         }
 
         long k;
-        k = this.InfraInfra.DataMidGet(this.Data, this.Index);
+        k = this.InfraInfra.DataIntGet(this.Data, this.Index);
 
         long a;
         a = k;
@@ -222,8 +222,8 @@ class Network : NetworkNetwork
 
     protected virtual long CountGet(long dataCount, long nextCase)
     {
-        int kk;
-        kk = sizeof(int);
+        long kk;
+        kk = sizeof(long);
 
         if (dataCount < kk)
         {
