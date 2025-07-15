@@ -18,7 +18,7 @@ class ClassWriteCountOperate : ClassWriteOperate
         return true;
     }
 
-    public override bool ExecuteMemberStart()
+    public override bool ExecutePartStart()
     {
         ClassWriteArg arg;
         arg = this.Write.Arg;
@@ -26,11 +26,11 @@ class ClassWriteCountOperate : ClassWriteOperate
         return true;
     }
 
-    public override bool ExecuteMemberEnd(int count)
+    public override bool ExecutePartEnd(int count)
     {
         ClassWriteArg arg;
         arg = this.Write.Arg;
-        arg.MemberCount = count;
+        arg.PartCount = count;
         return true;
     }
 }

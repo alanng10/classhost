@@ -14,12 +14,12 @@ class ClassWriteOperate : Any
         return false;
     }
 
-    public virtual bool ExecuteMemberStart()
+    public virtual bool ExecutePartStart()
     {
         return false;
     }
 
-    public virtual bool ExecuteMemberEnd(int count)
+    public virtual bool ExecutePartEnd(int count)
     {
         return false;
     }

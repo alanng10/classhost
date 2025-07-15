@@ -39,12 +39,12 @@ class ClassWriteSetOperate : ClassWriteOperate
         return true;
     }
 
-    public override bool ExecuteMemberStart()
+    public override bool ExecutePartStart()
     {
         ClassWriteArg arg;
         arg = this.Write.Arg;
 
-        this.Write.ExecuteCount(arg.MemberCount);
+        this.Write.ExecuteCount(arg.PartCount);
         return true;
     }
 }
