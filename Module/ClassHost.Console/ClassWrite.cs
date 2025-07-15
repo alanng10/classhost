@@ -88,10 +88,7 @@ class ClassWrite : Any
         bool b;
         b = (varClass == null);
 
-        long ka;
-        ka = this.OptionData(b);
-
-        this.ExecuteByte(ka);
+        this.ExecuteOption(b);
 
         if (!b)
         {
@@ -136,10 +133,6 @@ class ClassWrite : Any
             ClassNodeComp a;
             a = (ClassNodeComp)array.GetAt(i);
 
-            // bool ba;
-            // ba = (a == null);
-            // this.Console.Log("ClassWrite.ExecuteMember ClassNodeComp is null: " + ba.ToString().ToLower());
-
             if (!(a == null))
             {
                 this.ExecuteComp(a);
@@ -149,8 +142,6 @@ class ClassWrite : Any
 
             i = i + 1;
         }
-
-        // this.Console.Log("ClassWrite.ExecuteMember array count: " + count + ", comp count: " + kk);
 
         this.Operate.ExecuteMemberEnd(kk);
         return true;
