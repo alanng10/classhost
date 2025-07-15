@@ -158,13 +158,13 @@ class ClassWrite : Any
 
     protected virtual bool ExecuteComp(ClassNodeComp comp)
     {
-        if (comp is ClassNodeField)
+        if (!((comp as ClassNodeField) == null))
         {
-            this.ExecuteField((ClassNodeField)comp);
+            this.ExecuteField(comp as ClassNodeField);
         }
-        if (comp is ClassNodeMaide)
+        if (!((comp as ClassNodeMaide) == null))
         {
-            this.ExecuteMaide((ClassNodeMaide)comp);
+            this.ExecuteMaide(comp as ClassNodeMaide);
         }
         return true;
     }
