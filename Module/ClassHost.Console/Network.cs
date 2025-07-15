@@ -177,8 +177,6 @@ class Network : NetworkNetwork
         long ke;
         ke = this.InfraInfra.DataIntGet(this.CountData, 0);
 
-        // this.Console.Log("Network received data count: " + ke.ToString());
-
         this.ProtoCount = ke;
 
         this.ProtoCase = nextCase;
