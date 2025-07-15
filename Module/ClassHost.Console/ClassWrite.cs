@@ -437,15 +437,15 @@ class ClassWrite : Any
         return a;
     }
 
-    protected virtual long OptionalData(bool b)
+    protected virtual long OptionData(bool b)
     {
-        long aa;
-        aa = 0;
+        long k;
+        k = 0;
         if (!b)
         {
-            aa = 1;
+            k = 1;
         }
-        return aa;
+        return k;
     }
 
     protected virtual bool ExecuteString(String value)
