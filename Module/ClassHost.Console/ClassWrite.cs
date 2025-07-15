@@ -88,10 +88,10 @@ class ClassWrite : Any
         bool b;
         b = (varClass == null);
 
-        long aa;
-        aa = this.OptionData(b);
+        long ka;
+        ka = this.OptionData(b);
 
-        this.ExecuteByte(aa);
+        this.ExecuteByte(ka);
 
         if (!b)
         {
