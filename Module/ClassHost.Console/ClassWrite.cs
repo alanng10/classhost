@@ -385,7 +385,7 @@ class ClassWrite : Any
             bba = (start < end);
             if (bba)
             {
-                token = (ClassTokenToken)code.Token.GetAt(end - 1);
+                token = code.Token.GetAt(end - 1) as ClassTokenToken;
 
                 tokenRange = token.Range;
 
