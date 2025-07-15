@@ -263,7 +263,7 @@ class ClassWrite : Any
 
         long k;
         k = line.Range.Index + token.Range.Index + token.Range.Count;
-        
+
         return k;
     }
 
