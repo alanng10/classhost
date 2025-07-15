@@ -52,13 +52,10 @@ class Network : NetworkNetwork
     
     public override bool StatusEvent()
     {
-        NetworkStatus status;
-        status = this.Status;
-
-        if (!(status == this.NetworkStatusList.NoError))
+        if (!(this.Status == this.NetworkStatusList.NoError))
         {
             this.Close();
-            this.Console.Thread.Exit(100 + status.Index);
+            this.Console.Thread.Exit(100 + this.Status.Index);
         }
         return true;
     }
