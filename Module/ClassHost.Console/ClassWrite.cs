@@ -87,7 +87,7 @@ class ClassWrite : Any
     {
         bool b;
         b = (varClass == null);
-        
+
         long aa;
         aa = this.OptionData(b);
 
@@ -96,7 +96,7 @@ class ClassWrite : Any
         if (!b)
         {
             ClassNodeClassName kaa;
-            
+
             kaa = varClass.Name;
             this.ExecuteClassName(kaa);
 
@@ -104,7 +104,7 @@ class ClassWrite : Any
             {
                 this.ExecuteRange(kaa.Range);
             }
-            
+
             kaa = varClass.Base;
             this.ExecuteClassName(kaa);
 
