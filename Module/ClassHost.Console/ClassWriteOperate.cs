@@ -9,6 +9,11 @@ class ClassWriteOperate : Any
         return false;
     }
 
+    public virtual bool ExecuteInt(long value)
+    {
+        return false;
+    }
+
     public virtual bool ExecuteMemberStart()
     {
         return false;

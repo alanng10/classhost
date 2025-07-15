@@ -463,48 +463,19 @@ class ClassWrite : Any
         return true;
     }
 
-    public virtual bool ExecuteIndex(int value)
+    public virtual bool ExecuteIndex(long value)
     {
-        return this.ExecuteSMid(value);
+        return this.ExecuteInt(value);
     }
 
-    public virtual bool ExecuteCount(int value)
+    public virtual bool ExecuteCount(long value)
     {
-        return this.ExecuteSMid(value);
+        return this.ExecuteInt(value);
     }
 
-    public virtual bool ExecuteSMid(int value)
+    protected virtual bool ExecuteInt(long value)
     {
-        return this.ExecuteMid((uint)value);
-    }
-
-    protected virtual bool ExecuteMid(uint value)
-    {
-        ulong a;
-        a = value;
-        return this.ExecuteInt(sizeof(uint), a);
-    }
-
-    protected virtual bool ExecuteInt(long count, ulong value)
-    {
-        long i;
-        i = 0;
-        while (i < count)
-        {
-            int shift;
-            shift = (int)(i * 8);
-
-            ulong k;
-            k = value >> shift;
-            k = k & 0xff;
-
-            long oo;
-            oo = (long)k;
-
-            this.ExecuteByte(oo);
-
-            i = i + 1;
-        }
+        this.Operate.ExecuteInt(value);
         return true;
     }
 
