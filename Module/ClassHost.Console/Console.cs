@@ -135,7 +135,7 @@ class Console : TextAdd
         Storage a;
         a = new Storage();
         a.Init();
-        a.Path = this.S("ClassServer.Console.data/log.txt");
+        a.Path = this.S("ClassHost.Console.data/log.txt");
         a.Mode = mode;
         a.Open();
 
