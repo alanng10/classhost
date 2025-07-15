@@ -10,6 +10,14 @@ class ClassWriteCountOperate : ClassWriteOperate
         return true;
     }
 
+    public override bool ExecuteInt(long value)
+    {
+        ClassWriteArg arg;
+        arg = this.Write.Arg;
+        arg.Index = arg.Index + sizeof(long);
+        return true;
+    }
+
     public override bool ExecuteMemberStart()
     {
         ClassWriteArg arg;
