@@ -121,7 +121,7 @@ class ClassWrite : Any
     protected virtual bool ExecutePart(Array array)
     {
         this.Operate.ExecutePartStart();
-        
+
         long kk;
         kk = 0;
 
