@@ -232,24 +232,21 @@ class Network : NetworkNetwork
 
         this.Stream.Read(this.CountData, this.CountRange);
 
-        long u;
-        u = this.InfraInfra.DataMidGet(this.CountData, 0);
-
-        int ke;
-        ke = (int)u;
+        long ke;
+        ke = this.InfraInfra.DataIntGet(this.CountData, 0);
 
         if (ke < 0)
         {
-            this.Console.Log(this.TextInfra.S("Network received count invalid"));
+            this.Console.Log(this.TextInfra.S("Network ceive count unvalid"));
         }
 
         // this.Console.Log("Network received data count: " + ke.ToString());
 
         this.Count = ke;
 
-        dataCount = dataCount - kk;
-
         this.ProtoCase = nextCase;
+
+        dataCount = dataCount - kk;
 
         return dataCount;
     }
